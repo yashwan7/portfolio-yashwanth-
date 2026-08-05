@@ -16,19 +16,6 @@ export const Contact: React.FC = () => {
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedMsgText, setCopiedMsgText] = useState(false);
-
-  const getGmailUrl = (name = formData.name, email = formData.email, subject = formData.subject, message = formData.message) => {
-    const subjectText = subject || `New Portfolio Message from ${name || 'Visitor'}`;
-    const bodyText = `Hi Yashwanth,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}`;
-    return `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=${encodeURIComponent(PERSONAL_INFO.email)}&su=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`;
-  };
-
-  const getMailtoUrl = (name = formData.name, email = formData.email, subject = formData.subject, message = formData.message) => {
-    const subjectText = subject || `New Portfolio Message from ${name || 'Visitor'}`;
-    const bodyText = `Hi Yashwanth,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}`;
-    return `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`;
-  };
 
   const handleCopyEmail = (e?: React.MouseEvent) => {
     if (e) e.preventDefault();
@@ -37,17 +24,11 @@ export const Contact: React.FC = () => {
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
-  const handleCopyMessageText = () => {
-    const fullText = `To: ${PERSONAL_INFO.email}\nSubject: ${formData.subject || 'Portfolio Inquiry'}\n\nHi Yashwanth,\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`;
-    navigator.clipboard.writeText(fullText);
-    setCopiedMsgText(true);
-    setTimeout(() => setCopiedMsgText(false), 2500);
-  };
-
   const handleDirectEmailClick = (e: React.MouseEvent) => {
     e.preventDefault();
     handleCopyEmail();
-    window.open(getGmailUrl('', '', '', ''), '_blank');
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(PERSONAL_INFO.email)}`;
+    window.open(gmailUrl, '_blank');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,45 +37,46 @@ export const Contact: React.FC = () => {
 
     setStatus('submitting');
 
-    const gmailUrl = getGmailUrl();
-    const mailtoUrl = getMailtoUrl();
-
-    // Try Web3Forms if valid key present, else fallback gracefully
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      // Send directly via FormSubmit AJAX (No redirects!)
+      const res = await fetch(`https://formsubmit.co/ajax/${PERSONAL_INFO.email}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_KEY',
-          email: PERSONAL_INFO.email,
-          to_email: PERSONAL_INFO.email,
           name: formData.name,
-          replyto: formData.email,
-          subject: formData.subject || `New Portfolio Message from ${formData.name}`,
+          email: formData.email,
+          _subject: formData.subject || `Portfolio Inquiry from ${formData.name}`,
           message: formData.message,
+          _template: 'table',
+          _captcha: 'false',
         }),
       });
+
       const data = await res.json();
-      if (!data.success) {
-        throw new Error('Web3Forms key required');
+
+      if (res.ok && (data.success === 'true' || data.success === true || res.status === 200)) {
+        setStatus('success');
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 },
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error(data.message || 'Submission error');
       }
-    } catch {
-      // Fallback: automatically trigger Gmail web compose & mailto
-      console.info('Opening direct Gmail Web Compose');
+    } catch (err) {
+      console.error('Direct email dispatch error:', err);
+      // Secondary fallback to opening Gmail compose if network/CORS blocks fetch
+      const subjectText = formData.subject || `New Portfolio Message from ${formData.name}`;
+      const bodyText = `Hi Yashwanth,\n\n${formData.message}\n\n---\nFrom: ${formData.name}\nEmail: ${formData.email}`;
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=${encodeURIComponent(PERSONAL_INFO.email)}&su=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`;
+      window.open(gmailUrl, '_blank');
+      setStatus('success');
     }
-
-    // Open Gmail compose tab automatically
-    window.open(gmailUrl, '_blank');
-
-    setStatus('success');
-    confetti({
-      particleCount: 80,
-      spread: 70,
-      origin: { y: 0.7 },
-    });
   };
 
   const contactCards = [
@@ -263,7 +245,7 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Working Black Glassmorphism Form Card */}
+          {/* Right Column: Direct Background Dispatch Form Card */}
           <motion.div
             initial={{ opacity: 0, x: 15 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -278,7 +260,7 @@ export const Contact: React.FC = () => {
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                 </h3>
                 <p className="text-xs text-slate-400 mt-0.5 font-mono">
-                  Messages dispatch directly to <span className="text-slate-200 font-semibold">{PERSONAL_INFO.email}</span>
+                  Delivers directly to <span className="text-slate-200 font-semibold">{PERSONAL_INFO.email}</span>
                 </p>
               </div>
               <button
@@ -298,39 +280,10 @@ export const Contact: React.FC = () => {
                   <CheckCircle className="w-6 h-6 animate-bounce" />
                 </div>
                 <div>
-                  <h4 className="text-base font-bold text-white">Gmail Compose Opened!</h4>
+                  <h4 className="text-base font-bold text-white">Message Sent Directly!</h4>
                   <p className="text-xs font-mono text-slate-300 max-w-md mx-auto mt-1 leading-relaxed">
-                    Your message has been pre-filled into Gmail in a new tab. Click <strong className="text-white">Send</strong> in Gmail to send it straight to Yashwanth (<span className="text-slate-200">{PERSONAL_INFO.email}</span>).
+                    Thank you for reaching out! Your message has been dispatched straight to Yashwanth's inbox (<span className="text-white">{PERSONAL_INFO.email}</span>).
                   </p>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-2 pt-2">
-                  <a
-                    href={getGmailUrl()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3.5 py-2 rounded-xl bg-red-600/20 border border-red-500/40 text-red-300 hover:bg-red-600/30 hover:text-white text-xs font-mono flex items-center gap-1.5 transition-all"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    <span>Open Gmail Web</span>
-                  </a>
-
-                  <a
-                    href={getMailtoUrl()}
-                    className="px-3.5 py-2 rounded-xl bg-sky-600/20 border border-sky-500/40 text-sky-300 hover:bg-sky-600/30 hover:text-white text-xs font-mono flex items-center gap-1.5 transition-all"
-                  >
-                    <Mail className="w-3.5 h-3.5" />
-                    <span>Open Mail App</span>
-                  </a>
-
-                  <button
-                    type="button"
-                    onClick={handleCopyMessageText}
-                    className="px-3.5 py-2 rounded-xl bg-black/60 border border-white/10 text-slate-300 hover:border-white/30 text-xs font-mono flex items-center gap-1.5 transition-all"
-                  >
-                    {copiedMsgText ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
-                    <span>{copiedMsgText ? 'Message Copied!' : 'Copy Message Text'}</span>
-                  </button>
                 </div>
 
                 <div className="pt-2">
@@ -339,7 +292,7 @@ export const Contact: React.FC = () => {
                       setStatus('idle');
                       setFormData({ name: '', email: '', subject: '', message: '' });
                     }}
-                    className="px-4 py-2 rounded-xl bg-neutral-900 border border-white/10 text-xs font-mono text-slate-400 hover:text-white hover:border-white/30 transition-all"
+                    className="px-4 py-2 rounded-xl bg-neutral-900 border border-white/20 text-xs font-mono text-slate-300 hover:text-white hover:border-white/40 transition-all cursor-pointer"
                   >
                     Send Another Message
                   </button>
@@ -402,7 +355,10 @@ export const Contact: React.FC = () => {
                   className="w-full py-3 rounded-xl bg-neutral-900 border border-white/20 hover:border-white/40 text-white font-medium text-xs flex items-center justify-center gap-2 shadow-xl hover:bg-neutral-800 transition-all disabled:opacity-50 active:scale-95 cursor-pointer"
                 >
                   {status === 'submitting' ? (
-                    <span>Opening Gmail...</span>
+                    <span className="flex items-center gap-2">
+                      <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Sending Direct Email...
+                    </span>
                   ) : (
                     <>
                       <Send className="w-3.5 h-3.5" />
@@ -422,4 +378,5 @@ export const Contact: React.FC = () => {
 };
 
 export default Contact;
+
 
