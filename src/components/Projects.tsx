@@ -57,12 +57,12 @@ export const Projects: React.FC = () => {
                 onClick={() => setSelectedProject(project)}
                 className="group/item cursor-pointer block w-full p-1.5 bg-neutral-900/60 border border-white/10 rounded-[12px] transition-all duration-300 ease-out group-has-hover:opacity-40 group-has-hover:group-hover/item:opacity-100 group-has-hover:group-hover/item:border-white/20 group-has-hover:group-hover/item:scale-[1.015] shadow-lg"
               >
-                {/* Project Image Preview */}
-                <div className="relative overflow-hidden rounded-lg w-full aspect-[4/3] bg-neutral-950 border border-white/5">
+                {/* Project Image Preview - Full image visibility with object-contain */}
+                <div className="relative overflow-hidden rounded-lg w-full aspect-[16/9] bg-black/90 border border-white/5 flex items-center justify-center">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="rounded-lg w-full h-full object-cover transition-transform duration-500 group-has-hover:group-hover/item:scale-105"
+                    className="rounded-lg w-full h-full object-contain transition-transform duration-500 group-has-hover:group-hover/item:scale-105"
                   />
                   <div className="absolute top-2.5 right-2.5">
                     <span className="px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-slate-300">

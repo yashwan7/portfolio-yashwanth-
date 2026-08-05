@@ -121,65 +121,68 @@ export const PROJECTS: Project[] = [
   {
     id: "cloud-native-gateway",
     title: "Cloud Native API Gateway",
-    shortDescription: "High-performance microservice gateway featuring Redis sliding-window rate limiting, JWT validation, and resilient circuit breaking.",
-    fullDescription: "Architected a enterprise-grade API Gateway built on Spring Cloud Gateway and Reactive Netty. Handles high-throughput traffic, dynamic route discovery, JWT claim verification, and distributed rate limiting backed by Redis clusters. Built to serve as the unified entry point for cloud microservices.",
+    shortDescription: "Secure, scalable, and observable cloud native API Gateway platform to manage, secure, and route microservices with ease.",
+    fullDescription: "Architected an enterprise-grade Cloud Native API Gateway platform built on Spring Cloud Gateway, Reactive Netty, Redis, and Kubernetes. Features JWT/RBAC authentication, Redis rate limiting, dynamic routing & load balancing, circuit breaking, and full distributed tracing & observability with Prometheus, Grafana, and Jaeger.",
     category: "Cloud",
-    techStack: ["Java", "Spring Boot", "Spring Cloud Gateway", "Redis", "Docker", "Kubernetes"],
-    githubUrl: "https://github.com/yashwan7/cloud-native-api-gateway", // Replace GitHub link
-    liveDemoUrl: "https://github.com/yashwan7/cloud-native-api-gateway", // Replace Live Demo link
-    demoVideoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Add project walkthrough video here (YouTube or MP4)
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80", // Upload project image here
+    techStack: ["Spring Cloud Gateway", "Redis", "Kubernetes", "Kafka", "Prometheus", "Grafana", "Jaeger"],
+    githubUrl: "https://github.com/yashwan7/cloud-native-api-gateway",
+    liveDemoUrl: "https://github.com/yashwan7/cloud-native-api-gateway",
+    demoVideoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    image: "/images/api-gateway-cover.jpg",
     screenshots: [
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80"
+      "/images/api-gateway-cover.jpg"
     ],
     status: "Production",
     highlights: [
-      "Sub-millisecond latency for authentication checks",
-      "Redis sliding-window distributed rate limiter preventing DDoS",
-      "Automated Helm charts for Kubernetes cluster deployment"
+      "JWT / RBAC Authentication & Authorization security layer",
+      "Redis sliding-window rate limiting & distributed caching",
+      "Circuit breaking resilience & dynamic microservice route load balancing",
+      "Full observability with Prometheus, Grafana & Jaeger distributed tracing"
     ]
   },
   {
     id: "persistent-memory-ai",
     title: "Persistent Memory AI Assistant",
-    shortDescription: "Autonomous conversational AI agent with dual-tier Redis short-term memory and ChromaDB RAG long-term memory.",
-    fullDescription: "Engineered an intelligent persistent memory agent using LangChain, Python FastAPI, and hybrid semantic search. Features automatic conversation summarization, semantic context retrieval, and zero-data-loss Redis session caching.",
+    shortDescription: "An AI assistant that remembers your conversations across sessions using LangChain, ChromaDB RAG, and Gemini/OpenAI APIs.",
+    fullDescription: "Engineered an intelligent AI assistant that remembers conversations across multiple sessions and devices. Built with Python, FastAPI, LangChain orchestration, ChromaDB vector store, RAG context retrieval, and Gemini/OpenAI APIs to deliver contextual, intelligent, and persistent conversations containerized in Docker.",
     category: "AI / ML",
-    techStack: ["Python", "LangChain", "FastAPI", "Redis", "MongoDB", "OpenAI / Gemini"],
+    techStack: ["Python", "FastAPI", "LangChain", "ChromaDB", "RAG", "Gemini API", "OpenAI API", "Docker"],
     githubUrl: "https://github.com/yashwan7/persistent-memory-ai-contextual-assistant",
     liveDemoUrl: "https://github.com/yashwan7/persistent-memory-ai-contextual-assistant",
-    demoVideoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Add Demo Video link
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80", // Upload project image here
+    demoVideoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    image: "/images/persistent-memory-ai-cover.jpg",
     screenshots: [
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80"
+      "/images/persistent-memory-ai-cover.jpg"
     ],
     status: "Active Development",
     highlights: [
-      "Long-term vector database recall across unlimited sessions",
-      "Sub-200ms semantic search response rate",
-      "Multi-agent task decomposition capabilities"
+      "Persistent Memory across multiple sessions and devices",
+      "Semantic Search using embeddings & ChromaDB vector store",
+      "RAG Powered knowledge retrieval & context-aware answers",
+      "Dockerized deployment with Gemini / OpenAI API integration"
     ]
   },
   {
     id: "ecosync-ai",
-    title: "EcoSync AI — Smart Resource Platform",
-    shortDescription: "Award-winning IoT & AI energy monitoring platform delivering real-time anomaly detection and predictive grid analytics.",
-    fullDescription: "EcoSync AI won 3rd Place at EcoSpark 2026. Integrates machine learning telemetry processing to predict grid energy consumption spikes and automatically optimize load distribution for eco-friendly sustainability.",
+    title: "EcoSync AI — Smart Composting Platform",
+    shortDescription: "IoT + AI based smart composting platform that monitors waste, predicts compost readiness, and helps build a sustainable future.",
+    fullDescription: "EcoSync AI won 3rd Place at EcoSpark 2026. It pairs ESP32 sensor hardware with a React.js frontend, Spring Boot backend, MySQL, and Gemini API intelligence to monitor compost status, temperature, moisture, and gas levels in real-time while predicting compost readiness.",
     category: "AI / ML",
-    techStack: ["Python", "React.js", "Tailwind CSS", "Redis", "Docker", "PyTorch"],
+    techStack: ["ESP32", "React.js", "Spring Boot", "MySQL", "Gemini API", "Python"],
     githubUrl: "https://github.com/yashwan7/EcoSync-AI",
     liveDemoUrl: "https://github.com/yashwan7/EcoSync-AI",
     demoVideoUrl: "https://youtu.be/OuUeNGgdDLM",
-    image: "/images/cert-ecospark.png",
+    image: "/images/ecosync-cover.jpg",
     screenshots: [
+      "/images/ecosync-cover.jpg",
       "/images/cert-ecospark.png"
     ],
     status: "Hackathon Winner",
     highlights: [
       "3rd Place Winner at EcoSpark 2026 Hackathon",
-      "94.2% accuracy in 24-hour energy demand forecasting",
-      "Real-time WebSocket dashboard visualization"
+      "Real-time Temperature, Moisture & Gas telemetry monitoring",
+      "AI compost readiness prediction powered by Gemini API",
+      "Live hardware sensor OLED & dashboard visualization"
     ]
   }
 ];

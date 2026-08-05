@@ -12,7 +12,7 @@ interface ProjectModalProps {
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
   if (!project) return null;
 
-  const [activeTab, setActiveTab] = useState<'video' | 'website' | 'screenshots'>('video');
+  const [activeTab, setActiveTab] = useState<'cover' | 'video' | 'website' | 'screenshots'>('cover');
 
   // Convert youtube link to embed format if needed
   const getEmbedVideoUrl = (url?: string) => {
@@ -62,7 +62,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 </span>
               </div>
 
-              {/* // Replace project title */}
               <h3 className="text-2xl font-extrabold text-white tracking-tight">
                 {project.title}
               </h3>
@@ -79,8 +78,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           {/* Modal Content Scroll Area */}
           <div className="p-6 overflow-y-auto space-y-6">
             
-            {/* View Mode Tabs (Video Preview, Website Preview, Screenshots) */}
-            <div className="flex items-center gap-2 border-b border-white/10 pb-3">
+            {/* View Mode Tabs (Cover Image, Video Preview, Website Preview, Screenshots) */}
+            <div className="flex items-center gap-2 border-b border-white/10 pb-3 flex-wrap">
+              <button
+                onClick={() => setActiveTab('cover')}
+                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                  activeTab === 'cover'
+                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <ImageIcon className="w-3.5 h-3.5" />
+                <span>Cover Banner</span>
+              </button>
+
               <button
                 onClick={() => setActiveTab('video')}
                 className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
@@ -118,9 +129,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               </button>
             </div>
 
-            {/* Media Preview Box */}
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-obsidian-950 border border-white/10 flex items-center justify-center">
+            {/* Media Preview Box - Zero Cropping */}
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black/95 border border-white/10 flex items-center justify-center">
               
+              {activeTab === 'cover' && (
+                <img
+                  src={project.image}
+                  alt={`${project.title} Cover Banner`}
+                  className="w-full h-full object-contain p-1 rounded-2xl"
+                />
+              )}
+
               {activeTab === 'video' && (
                 project.demoVideoUrl ? (
                   // Support YouTube Embed or Direct MP4 Video
@@ -133,18 +152,16 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                       allowFullScreen
                     />
                   ) : (
-                    // // Add project walkthrough video here (.mp4 format)
                     <video
                       controls
                       autoPlay
                       muted
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain bg-black"
                       src={project.demoVideoUrl}
                     />
                   )
                 ) : (
                   <div className="text-center p-6 text-slate-400 font-mono text-xs">
-                    {/* // Add Demo Video comment */}
                     <Play className="w-8 h-8 text-copper-400 mb-2 mx-auto animate-pulse" />
                     <span>// Add project walkthrough video here</span>
                   </div>
@@ -161,13 +178,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               )}
 
               {activeTab === 'screenshots' && (
-                <div className="w-full h-full overflow-x-auto flex gap-4 p-4 items-center">
+                <div className="w-full h-full overflow-x-auto flex gap-4 p-4 items-center bg-black/90">
                   {project.screenshots.map((shot, idx) => (
                     <img
                       key={idx}
                       src={shot}
                       alt={`Screenshot ${idx + 1}`}
-                      className="h-full object-cover rounded-xl border border-white/10"
+                      className="h-full object-contain rounded-xl border border-white/10"
                     />
                   ))}
                 </div>
