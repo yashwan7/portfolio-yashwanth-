@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#121212] text-slate-200 font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  .font-serif {
+    font-family: 'Instrument Serif', 'DM Serif Display', Georgia, serif;
+  }
+
+  /* Custom smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #121212;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #262626;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #404040;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(17, 22, 37, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-card-hover:hover {
+    background: rgba(22, 28, 46, 0.85);
+    border-color: rgba(56, 189, 248, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px -10px rgba(56, 189, 248, 0.15), 0 0 20px -5px rgba(249, 115, 22, 0.15);
+  }
+
+  .glass-pill {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .text-gradient-ice {
+    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-copper {
+    background: linear-gradient(135deg, #ffffff 0%, #fb923c 50%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-hybrid {
+    background: linear-gradient(135deg, #38bdf8 0%, #ffffff 50%, #fb923c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .border-glow-ice {
+    box-shadow: 0 0 25px -5px rgba(56, 189, 248, 0.3);
+  }
+
+  .border-glow-copper {
+    box-shadow: 0 0 25px -5px rgba(249, 115, 22, 0.3);
+  }
+}
+
+/* Background mesh pattern */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Radial ambient light glows */
+.radial-glow-top {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(249, 115, 22, 0.05) 40%, transparent 70%);
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+/* White Cat Cursor Walking Animations */
+@keyframes catLegWalkFront {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-2px) rotate(14deg); }
+  75% { transform: translateY(-2px) rotate(-14deg); }
+}
+
+@keyframes catLegWalkBack {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-2px) rotate(-14deg); }
+  75% { transform: translateY(-2px) rotate(14deg); }
+}
+
+@keyframes catTailWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(12deg); }
+}
+
+.animate-cat-leg-front {
+  animation: catLegWalkFront 0.25s infinite linear;
+  transform-origin: 20px 38px;
+}
+
+.animate-cat-leg-back {
+  animation: catLegWalkBack 0.25s infinite linear;
+  transform-origin: 36px 38px;
+}
+
+.animate-cat-tail {
+  animation: catTailWiggle 0.8s infinite ease-in-out;
+  transform-origin: 44px 32px;
+}
+
+/* LakshyaWorks & MannDamani Grainy Noise Background Overlay */
+.bg-grain-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.border-corner-accent {
+  position: relative;
+}
+.border-corner-accent::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid rgba(56, 189, 248, 0.7);
+  border-left: 2px solid rgba(56, 189, 248, 0.7);
+}
+.border-corner-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid rgba(56, 189, 248, 0.7);
+  border-right: 2px solid rgba(56, 189, 248, 0.7);
+}
