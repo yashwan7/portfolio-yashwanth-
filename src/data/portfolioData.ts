@@ -170,7 +170,7 @@ export const PROJECTS: Project[] = [
     techStack: ["Python", "React.js", "Tailwind CSS", "Redis", "Docker", "PyTorch"],
     githubUrl: "https://github.com/yashwan7/EcoSync-AI",
     liveDemoUrl: "https://github.com/yashwan7/EcoSync-AI",
-    demoVideoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    demoVideoUrl: "https://youtu.be/OuUeNGgdDLM",
     image: "/images/cert-ecospark.png",
     screenshots: [
       "/images/cert-ecospark.png"
@@ -180,26 +180,6 @@ export const PROJECTS: Project[] = [
       "3rd Place Winner at EcoSpark 2026 Hackathon",
       "94.2% accuracy in 24-hour energy demand forecasting",
       "Real-time WebSocket dashboard visualization"
-    ]
-  },
-  {
-    id: "distributed-task-scheduler",
-    title: "Distributed Fault-Tolerant Task Queue",
-    shortDescription: "Low-latency distributed task scheduler with dead-letter queueing, leader election, and task priority queues.",
-    fullDescription: "Built a robust distributed worker pool system supporting scheduled execution, retry backoff algorithms, and dynamic horizontal worker scaling. Designed for high resilience in distributed backend environments.",
-    category: "Backend",
-    techStack: ["Java", "Spring Boot", "Redis", "Docker", "MySQL"],
-    githubUrl: "https://github.com/yashwan7",
-    liveDemoUrl: "https://github.com/yashwan7",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    screenshots: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
-    ],
-    status: "Completed",
-    highlights: [
-      "Handles 10,000+ scheduled jobs per minute seamlessly",
-      "Zero message loss on node failure via Redis WAL replication",
-      "Custom RESTful Admin inspection UI"
     ]
   }
 ];
