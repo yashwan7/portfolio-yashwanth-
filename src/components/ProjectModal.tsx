@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Play, Globe, Image as ImageIcon, CheckCircle2, Video } from 'lucide-react';
+import { X, ExternalLink, Play, Globe, Image as ImageIcon, CheckCircle2, Video, Box } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import { Project } from '../data/portfolioData';
+import APIGatewayDemo from './APIGatewayDemo';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -19,11 +20,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
     if (!url) return '';
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1]?.split('&')[0];
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+      return `https://www.youtube.com/embed/${videoId}`;
     }
     if (url.includes('youtu.be/')) {
-      const videoId = url.split('youtu.be/')[1]?.split('?')[0];
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+      const videoId = url.split('youtu.be/')[1]?.split('?')[0]?.split('&')[0];
+      return `https://www.youtube.com/embed/${videoId}`;
     }
     return url;
   };
@@ -88,8 +89,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                <Video className="w-3.5 h-3.5" />
-                <span>Demo Video</span>
+                {project.id === 'cloud-native-gateway' ? <Box className="w-3.5 h-3.5 text-cyan-400" /> : <Video className="w-3.5 h-3.5" />}
+                <span>{project.id === 'cloud-native-gateway' ? 'Interactive 3D Demo' : 'Demo Video'}</span>
               </button>
 
               <button
@@ -120,7 +121,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             {/* Media Preview Box */}
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black/95 border border-white/10 flex items-center justify-center">
               {activeTab === 'video' && (
-                project.demoVideoUrl ? (
+                project.id === 'cloud-native-gateway' ? (
+                  <div className="w-full h-full">
+                    <APIGatewayDemo />
+                  </div>
+                ) : project.demoVideoUrl ? (
                   // Support YouTube Embed or Direct MP4 Video
                   project.demoVideoUrl.includes('youtube') || project.demoVideoUrl.includes('youtu.be') ? (
                     <iframe

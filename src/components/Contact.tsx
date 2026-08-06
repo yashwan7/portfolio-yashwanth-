@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, Send, CheckCircle, Sparkles, Copy, Check, ExternalLink } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
-import confetti from 'canvas-confetti';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const Contact: React.FC = () => {
@@ -59,11 +58,6 @@ export const Contact: React.FC = () => {
 
       if (res.ok && (data.success === 'true' || data.success === true || res.status === 200)) {
         setStatus('success');
-        confetti({
-          particleCount: 100,
-          spread: 80,
-          origin: { y: 0.6 },
-        });
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         throw new Error(data.message || 'Submission error');

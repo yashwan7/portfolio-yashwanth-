@@ -149,7 +149,7 @@ export const PROJECTS: Project[] = [
     techStack: ["Python", "FastAPI", "LangChain", "ChromaDB", "RAG", "Gemini API", "OpenAI API", "Docker"],
     githubUrl: "https://github.com/yashwan7/persistent-memory-ai-contextual-assistant",
     liveDemoUrl: "https://github.com/yashwan7/persistent-memory-ai-contextual-assistant",
-    demoVideoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    demoVideoUrl: "https://youtu.be/mCLoiosbTiI",
     image: "/images/persistent-memory-ai-cover.jpg",
     screenshots: [
       "/images/persistent-memory-ai-cover.jpg"
