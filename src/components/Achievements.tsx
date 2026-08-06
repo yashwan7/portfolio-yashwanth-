@@ -67,7 +67,7 @@ export const Achievements: React.FC = () => {
 
                   {/* Achievement Content Card */}
                   <div className={`w-full sm:w-[calc(50%-2rem)] pl-12 sm:pl-0 ${isEven ? 'sm:pr-0' : 'sm:pl-0'}`}>
-                    <div className="glass-card glass-card-hover p-6 rounded-3xl border border-white/10 relative overflow-hidden group">
+                    <div className="glass-card apple-glass-hover netflix-card-hover p-6 rounded-3xl border border-white/10 relative overflow-hidden group">
                       
                       {/* Image Preview if available */}
                       {item.image && (

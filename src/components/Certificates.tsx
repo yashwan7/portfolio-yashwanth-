@@ -60,7 +60,7 @@ export const Certificates: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: idx * 0.04 }}
-              className="p-3 rounded-xl bg-neutral-900/40 border border-white/5 hover:border-white/20 transition-all flex flex-col justify-between"
+              className="p-3 rounded-xl bg-neutral-900/60 border border-white/10 apple-glass-hover netflix-card-hover group flex flex-col justify-between shadow-lg"
             >
               <div>
                 <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-black/60 border border-white/5 mb-2.5">

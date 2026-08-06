@@ -166,10 +166,10 @@ export const TechStack: React.FC = () => {
                     onMouseEnter={() => setHoveredTech(tech)}
                     className="group cursor-pointer"
                   >
-                    <div className="p-3 rounded-xl bg-neutral-900/40 border border-white/5 hover:border-white/20 transition-all flex items-center justify-between">
+                    <div className="p-3 rounded-xl bg-neutral-900/60 border border-white/10 apple-dock-icon hover:border-white/30 hover:bg-neutral-900/90 shadow-md flex items-center justify-between">
                       <div className="flex items-center gap-2.5 overflow-hidden">
-                        <div className="w-8 h-8 rounded-lg bg-neutral-950 border border-white/10 flex items-center justify-center flex-shrink-0 transition-colors group-hover:border-white/30">
-                          <Icon className={`w-4 h-4 ${color} transition-transform group-hover:scale-110`} />
+                        <div className="w-8 h-8 rounded-lg bg-neutral-950 border border-white/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:border-white/40 group-hover:scale-110">
+                          <Icon className={`w-4 h-4 ${color} transition-transform duration-300 group-hover:scale-110`} />
                         </div>
                         <div className="overflow-hidden">
                           <h4 className="text-xs font-medium text-white/90 group-hover:text-white truncate">
@@ -180,7 +180,7 @@ export const TechStack: React.FC = () => {
                           </p>
                         </div>
                       </div>
-                      <Info className="w-3 h-3 text-slate-600 group-hover:text-slate-300 flex-shrink-0 ml-1" />
+                      <Info className="w-3 h-3 text-slate-600 group-hover:text-cyan-400 transition-colors flex-shrink-0 ml-1" />
                     </div>
                   </motion.div>
                 );
