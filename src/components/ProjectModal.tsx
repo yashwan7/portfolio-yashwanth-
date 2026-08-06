@@ -119,7 +119,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </div>
 
             {/* Media Preview Box */}
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black/95 border border-white/10 flex items-center justify-center">
+            <div className="relative w-full min-h-[300px] sm:min-h-[400px] aspect-video rounded-2xl overflow-hidden bg-black/95 border border-white/10 flex items-center justify-center">
               {activeTab === 'video' && (
                 project.id === 'cloud-native-gateway' ? (
                   <div className="w-full h-full">

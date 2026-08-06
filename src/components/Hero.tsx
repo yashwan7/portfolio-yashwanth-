@@ -116,11 +116,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResumeModal }) => {
           </p>
 
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-4" style={{ letterSpacing: '-0.01em' }}>
-            When not coding, I explore distributed architecture, solve competitive programming problems, and stay active on <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className="font-medium text-white underline hover:opacity-80">GitHub</a> and <a href={PERSONAL_INFO.twitter} target="_blank" rel="noopener noreferrer" className="font-medium text-white underline hover:opacity-80">X</a>.
+            When not coding, I explore distributed architecture, solve competitive programming problems, and stay active on <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className="font-medium text-white underline hover:opacity-80">GitHub</a>.
           </p>
 
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-5" style={{ letterSpacing: '-0.01em' }}>
-            <span className="font-medium text-white">I'm open to work, freelance, or collaborate.</span>{' '}
+            <span className="font-medium text-white">Actively seeking Software Engineering Internship opportunities.</span>{' '}
             <a href="#contact" className="font-medium text-white underline hover:opacity-80 cursor-pointer">
               Contact Me.
             </a>

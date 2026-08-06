@@ -11,13 +11,25 @@ export const CatCursor: React.FC = () => {
   const animFrameId = useRef<number | null>(null);
 
   useEffect(() => {
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-      return;
-    }
+    const handlePointerMove = (x: number, y: number) => {
+      mousePos.current = { x, y };
+      setIsVisible(true);
+    };
 
     const handleMouseMove = (e: MouseEvent) => {
-      mousePos.current = { x: e.clientX, y: e.clientY };
-      setIsVisible(true);
+      handlePointerMove(e.clientX, e.clientY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches && e.touches.length > 0) {
+        handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches && e.touches.length > 0) {
+        handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
     };
 
     const handleMouseLeave = () => {
@@ -25,17 +37,24 @@ export const CatCursor: React.FC = () => {
     };
 
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
 
     const updatePhysics = () => {
-      // Slow, smooth trailing lerp factor (0.045 = graceful slow chasing)
-      const lerpFactor = 0.045;
+      // Smooth trailing lerp factor (0.05 = graceful smooth chasing)
+      const lerpFactor = 0.05;
       const dx = mousePos.current.x - currentPos.current.x;
       const dy = mousePos.current.y - currentPos.current.y;
       const distance = Math.hypot(dx, dy);
 
-      // If cat is more than 16px away from mouse, run slowly towards cursor
-      if (distance > 16) {
+      // If cat is initialized offscreen, snap to first touch/mouse location
+      if (currentPos.current.x < 0 && mousePos.current.x > 0) {
+        currentPos.current = { ...mousePos.current };
+      }
+
+      // If cat is more than 14px away, run towards pointer/touch
+      if (distance > 14) {
         currentPos.current.x += dx * lerpFactor;
         currentPos.current.y += dy * lerpFactor;
         setIsMoving(true);
@@ -44,7 +63,7 @@ export const CatCursor: React.FC = () => {
           setFacingLeft(dx < 0);
         }
       } else {
-        // Cat has arrived near cursor - sit down and rest
+        // Cat has arrived near pointer - sit down
         setIsMoving(false);
       }
 
@@ -56,6 +75,8 @@ export const CatCursor: React.FC = () => {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchstart', handleTouchStart);
       document.removeEventListener('mouseleave', handleMouseLeave);
       if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
     };

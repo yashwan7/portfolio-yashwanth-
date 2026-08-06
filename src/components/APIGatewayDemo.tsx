@@ -195,6 +195,9 @@ function K8sServicePod({ position, title, replicas, status }: { position: [numbe
 // ==========================================
 // 6. GRAFANA-STYLE SPARKLINE METRICS PANEL
 // ==========================================
+// ==========================================
+// 6. GRAFANA-STYLE SPARKLINE METRICS PANEL
+// ==========================================
 function GrafanaMetricsPanel({ reqId }: { reqId: string }) {
   const [metrics, setMetrics] = useState({ reqSec: 284, latency: 18, success: '99.94' });
 
@@ -210,41 +213,37 @@ function GrafanaMetricsPanel({ reqId }: { reqId: string }) {
   }, []);
 
   return (
-    <div style={{
-      position: 'absolute', top: '70px', right: '16px', zIndex: 10,
-      width: '190px', display: 'flex', flexDirection: 'column', gap: '8px',
-      fontFamily: 'Inter, system-ui, sans-serif'
-    }}>
-      <div style={{ fontSize: '10px', fontWeight: 700, color: '#64748B', letterSpacing: '1px' }}>
+    <div className="absolute top-12 sm:top-16 right-2 sm:right-4 z-10 w-[130px] sm:w-[190px] flex flex-col gap-1.5 sm:gap-2 font-sans pointer-events-none">
+      <div className="text-[9px] sm:text-[10px] font-bold text-slate-400 tracking-wider">
         GRAFANA MONITORING
       </div>
 
-      <div style={{ background: 'rgba(15, 17, 23, 0.85)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '8px', padding: '8px 10px', backdropFilter: 'blur(10px)' }}>
-        <div style={{ fontSize: '10px', color: '#94A3B8' }}>Requests/sec</div>
-        <div style={{ fontSize: '16px', fontWeight: 700, color: '#00F2FE' }}>
-          {metrics.reqSec} <span style={{ fontSize: '9px', color: '#64748B' }}>req/s</span>
+      <div className="bg-[#0f1117]/85 border border-white/10 rounded-lg p-1.5 sm:p-2.5 backdrop-blur-md">
+        <div className="text-[9px] sm:text-[10px] text-slate-400">Requests/sec</div>
+        <div className="text-xs sm:text-base font-bold text-cyan-400">
+          {metrics.reqSec} <span className="text-[8px] sm:text-[9px] text-slate-500 font-normal">req/s</span>
         </div>
-        <div style={{ fontSize: '9px', color: '#00F2FE', marginTop: '2px', letterSpacing: '2px' }}>
+        <div className="text-[8px] sm:text-[9px] text-cyan-400 mt-0.5 tracking-widest hidden sm:block">
           ▁▂▃▄▅▆▇█▅▄▃
         </div>
       </div>
 
-      <div style={{ background: 'rgba(15, 17, 23, 0.85)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '8px', padding: '8px 10px', backdropFilter: 'blur(10px)' }}>
-        <div style={{ fontSize: '10px', color: '#94A3B8' }}>Latency</div>
-        <div style={{ fontSize: '16px', fontWeight: 700, color: '#10B981' }}>
-          {metrics.latency} <span style={{ fontSize: '9px', color: '#64748B' }}>ms</span>
+      <div className="bg-[#0f1117]/85 border border-white/10 rounded-lg p-1.5 sm:p-2.5 backdrop-blur-md">
+        <div className="text-[9px] sm:text-[10px] text-slate-400">Latency</div>
+        <div className="text-xs sm:text-base font-bold text-emerald-400">
+          {metrics.latency} <span className="text-[8px] sm:text-[9px] text-slate-500 font-normal">ms</span>
         </div>
-        <div style={{ fontSize: '9px', color: '#10B981', marginTop: '2px', letterSpacing: '2px' }}>
+        <div className="text-[8px] sm:text-[9px] text-emerald-400 mt-0.5 tracking-widest hidden sm:block">
           ▇▆▅▅▄▃▂▂▃▄▅
         </div>
       </div>
 
-      <div style={{ background: 'rgba(15, 17, 23, 0.85)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '8px', padding: '8px 10px', backdropFilter: 'blur(10px)' }}>
-        <div style={{ fontSize: '10px', color: '#94A3B8' }}>Success Rate</div>
-        <div style={{ fontSize: '16px', fontWeight: 700, color: '#3B82F6' }}>
+      <div className="bg-[#0f1117]/85 border border-white/10 rounded-lg p-1.5 sm:p-2.5 backdrop-blur-md">
+        <div className="text-[9px] sm:text-[10px] text-slate-400">Success Rate</div>
+        <div className="text-xs sm:text-base font-bold text-blue-400">
           {metrics.success}%
         </div>
-        <div style={{ fontSize: '9px', color: '#3B82F6', marginTop: '2px', letterSpacing: '2px' }}>
+        <div className="text-[8px] sm:text-[9px] text-blue-400 mt-0.5 tracking-widest hidden sm:block">
           ███████████
         </div>
       </div>
@@ -267,17 +266,10 @@ function PipelineContextLogs({ currentStep, reqId }: { currentStep: number; reqI
   ];
 
   return (
-    <div style={{
-      position: 'absolute', bottom: '20px', left: '16px', zIndex: 10,
-      width: '380px', height: '110px', background: 'rgba(10, 12, 16, 0.9)',
-      border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px',
-      padding: '10px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px',
-      color: '#A7F3D0', backdropFilter: 'blur(10px)', overflow: 'hidden',
-      display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: '3px'
-    }}>
+    <div className="absolute bottom-2.5 sm:bottom-4 left-2 sm:left-4 z-10 w-[calc(100%-16px)] max-w-[420px] h-[85px] sm:h-[110px] bg-[#0a0c10]/90 border border-white/10 rounded-lg p-2 sm:p-2.5 font-mono text-[9px] sm:text-[10px] text-emerald-200 backdrop-blur-md overflow-hidden flex flex-col justify-end gap-0.5 pointer-events-none">
       {stepLogs.slice(0, currentStep + 1).map((log, i) => (
-        <div key={i} style={{ opacity: 0.5 + (i / 7) * 0.5 }}>
-          <span style={{ color: '#00F2FE' }}>❯</span> {log}
+        <div key={i} className="truncate" style={{ opacity: 0.5 + (i / 7) * 0.5 }}>
+          <span className="text-cyan-400">❯</span> {log}
         </div>
       ))}
     </div>
@@ -289,27 +281,16 @@ function PipelineContextLogs({ currentStep, reqId }: { currentStep: number; reqI
 // ==========================================
 function InteractiveControls({ onTriggerRequest }: { onTriggerRequest: (method: string, path: string) => void }) {
   return (
-    <div style={{
-      position: 'absolute', top: '70px', left: '16px', zIndex: 20,
-      display: 'flex', gap: '8px', fontFamily: 'Inter, system-ui, sans-serif'
-    }}>
+    <div className="absolute top-12 sm:top-16 left-2 sm:left-4 z-20 flex gap-1.5 sm:gap-2 font-sans">
       <button 
         onClick={() => onTriggerRequest('POST', '/login')}
-        style={{
-          background: 'rgba(0, 242, 254, 0.15)', border: '1px solid #00F2FE', color: '#00F2FE',
-          padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '11px', fontWeight: 700,
-          backdropFilter: 'blur(8px)', transition: 'all 0.2s'
-        }}
+        className="bg-cyan-500/15 border border-cyan-400 text-cyan-300 px-2 sm:px-3 py-1 sm:py-1.5 rounded-md text-[10px] sm:text-xs font-bold backdrop-blur-md hover:bg-cyan-500/30 active:scale-95 transition-all cursor-pointer"
       >
         ▶ POST /login
       </button>
       <button 
         onClick={() => onTriggerRequest('GET', '/users')}
-        style={{
-          background: 'rgba(16, 185, 129, 0.15)', border: '1px solid #10B981', color: '#10B981',
-          padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '11px', fontWeight: 700,
-          backdropFilter: 'blur(8px)', transition: 'all 0.2s'
-        }}
+        className="bg-emerald-500/15 border border-emerald-400 text-emerald-300 px-2 sm:px-3 py-1 sm:py-1.5 rounded-md text-[10px] sm:text-xs font-bold backdrop-blur-md hover:bg-emerald-500/30 active:scale-95 transition-all cursor-pointer"
       >
         ▶ GET /users
       </button>
@@ -339,55 +320,47 @@ function StaggeredHeroEnding({ visible, onReset }: { visible: boolean; onReset: 
   if (!visible) return null;
 
   return (
-    <div style={{
-      position: 'absolute', inset: 0, zIndex: 50,
-      background: 'rgba(15, 17, 23, 0.94)', backdropFilter: 'blur(20px)',
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      color: '#FFFFFF', fontFamily: 'Inter, system-ui, sans-serif', textAlign: 'center',
-      padding: '20px'
-    }}>
-      <h1 style={{
-        fontSize: '32px', fontWeight: 800, margin: 0,
-        background: 'linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%)',
-        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-        opacity: stage >= 1 ? 1 : 0, transform: stage >= 1 ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
-      }}>
+    <div className="absolute inset-0 z-50 bg-[#0f1117]/95 backdrop-blur-xl flex flex-col items-center justify-center text-white font-sans text-center p-4">
+      <h1 
+        className="text-xl sm:text-3xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent transition-all duration-700"
+        style={{
+          opacity: stage >= 1 ? 1 : 0,
+          transform: stage >= 1 ? 'translateY(0)' : 'translateY(15px)',
+        }}
+      >
         Cloud Native API Gateway
       </h1>
 
-      <div style={{
-        margin: '20px 0', opacity: stage >= 2 ? 1 : 0,
-        transform: stage >= 2 ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
-        display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center'
-      }}>
+      <div 
+        className="my-3 sm:my-5 flex gap-2 sm:gap-3 items-center flex-wrap justify-center transition-all duration-700"
+        style={{
+          opacity: stage >= 2 ? 1 : 0,
+          transform: stage >= 2 ? 'translateY(0)' : 'translateY(15px)',
+        }}
+      >
         {['Authentication', 'Routing', 'Rate Limiting', 'Caching', 'Observability'].map((feat, i) => (
           <React.Fragment key={i}>
-            <span style={{ fontSize: '12px', color: '#94A3B8', fontWeight: 500, letterSpacing: '0.5px' }}>{feat}</span>
-            {i < 4 && <span style={{ color: '#00F2FE', fontSize: '10px' }}>•</span>}
+            <span className="text-[10px] sm:text-xs text-slate-400 font-medium tracking-wide">{feat}</span>
+            {i < 4 && <span className="text-cyan-400 text-[8px]">•</span>}
           </React.Fragment>
         ))}
       </div>
 
-      <div style={{ width: '60px', height: '1px', background: 'rgba(255,255,255,0.15)', margin: '12px 0 20px 0' }} />
+      <div className="w-12 h-px bg-white/15 my-2 sm:my-4" />
 
-      <div style={{
-        fontSize: '12px', color: '#64748B', letterSpacing: '1.5px',
-        opacity: stage >= 3 ? 1 : 0, transform: stage >= 3 ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
-        marginBottom: '20px'
-      }}>
-        BUILT BY <span style={{ color: '#F8FAFC', fontWeight: 700 }}>YASHWANTH S N</span>
+      <div 
+        className="text-[10px] sm:text-xs text-slate-500 tracking-widest mb-4 transition-all duration-700"
+        style={{
+          opacity: stage >= 3 ? 1 : 0,
+          transform: stage >= 3 ? 'translateY(0)' : 'translateY(15px)',
+        }}
+      >
+        BUILT BY <span className="text-slate-200 font-bold">YASHWANTH S N</span>
       </div>
 
       <button
         onClick={onReset}
-        style={{
-          background: 'rgba(0, 242, 254, 0.2)', border: '1px solid #00F2FE', color: '#00F2FE',
-          padding: '8px 18px', borderRadius: '8px', cursor: 'pointer', fontSize: '12px', fontWeight: 700,
-          transition: 'all 0.2s'
-        }}
+        className="bg-cyan-500/20 border border-cyan-400 text-cyan-300 px-4 py-2 rounded-lg text-xs font-bold hover:bg-cyan-500/30 transition-all cursor-pointer"
       >
         🔄 Replay 3D Simulation
       </button>
