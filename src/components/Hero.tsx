@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResumeModal }) => {
 
             {/* Banner Quote */}
             <div className="absolute inset-0 flex items-center justify-center p-4">
-              <p className="text-white/90 text-base sm:text-xl italic font-serif text-center drop-shadow-md">
+              <p className="text-black text-base sm:text-xl italic font-serif text-center font-bold drop-shadow-sm">
                 "Driven. Engineering solutions that scale."
               </p>
             </div>
