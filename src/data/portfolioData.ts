@@ -119,6 +119,28 @@ export const TECH_STACK: TechItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: "orthotwin-ai-digital-twin",
+    title: "OrthoTwin — AI Patient-Specific Digital Twins",
+    shortDescription: "AI-powered digital twin platform for shoulder replacement planning, 3D bone reconstruction from CT scans, and virtual surgical planning.",
+    fullDescription: "Developed for Medha Medithon 2026, OrthoTwin is an AI-powered digital twin platform for patient-specific shoulder replacement planning. It transforms routine 2D CT/DICOM scans into high-fidelity 3D bone reconstructions using PyTorch deep learning segmentation and 3D Slicer/VTK. Features a vendor-neutral implant library for comparing implant options in 3D, interactive virtual alignment tools, physics-based Range of Motion (ROM) & impingement risk estimation, and closed-loop Plan vs Post-op surgical deviation analysis.",
+    category: "AI / ML",
+    techStack: ["Python", "PyTorch", "3D Slicer / VTK", "OpenCV", "FastAPI", "DICOM / NIfTI", "React.js"],
+    githubUrl: "https://github.com/yashwan7/OrthoTwin",
+    liveDemoUrl: "https://ortho-twin.vercel.app/",
+    image: "/images/orthotwin-cover.jpg",
+    screenshots: [
+      "/images/orthotwin-cover.jpg"
+    ],
+    status: "Hackathon Winner",
+    highlights: [
+      "Deep Learning AI CT Segmentation & 3D Bone Reconstruction (PyTorch & VTK)",
+      "Vendor-Neutral Implant Library for comparing multiple implant brands in 3D",
+      "Interactive Virtual 3D Planning for sizing, alignment & joint positioning",
+      "Physics-based Range of Motion (ROM) & Impingement Risk Estimation",
+      "Closed-Loop Plan vs Post-Op CT Deviation Analysis & Clinical Reporting"
+    ]
+  },
+  {
     id: "smart-emergency-response-router",
     title: "Smart Emergency Response Router",
     shortDescription: "A real-time intelligent system that prioritizes emergencies fairly and routes patients to the best feasible hospital using live capacity & travel time.",
