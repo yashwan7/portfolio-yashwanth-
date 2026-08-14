@@ -11,9 +11,17 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  if (!project) return null;
+  const [activeTab, setActiveTab] = useState<'video' | 'website' | 'screenshots'>(
+    project?.demoVideoUrl || project?.id === 'cloud-native-gateway' ? 'video' : 'screenshots'
+  );
 
-  const [activeTab, setActiveTab] = useState<'video' | 'website' | 'screenshots'>('video');
+  React.useEffect(() => {
+    if (project) {
+      setActiveTab(project.demoVideoUrl || project.id === 'cloud-native-gateway' ? 'video' : 'screenshots');
+    }
+  }, [project?.id]);
+
+  if (!project) return null;
 
   // Convert youtube link to embed format if needed
   const getEmbedVideoUrl = (url?: string) => {

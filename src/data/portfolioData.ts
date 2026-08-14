@@ -119,6 +119,29 @@ export const TECH_STACK: TechItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: "smart-emergency-response-router",
+    title: "Smart Emergency Response Router",
+    shortDescription: "A real-time intelligent system that prioritizes emergencies fairly and routes patients to the best feasible hospital using live capacity & travel time.",
+    fullDescription: "Architected an intelligent, real-time emergency response and hospital capacity routing platform designed to optimize emergency dispatching during critical situations. Built with a Spring Boot backend, React.js frontend, PostgreSQL database, and WebSockets/SSE for real-time live queue telemetry. Employs ESI-inspired 1–5 severity scoring, a starvation-safe Aging Priority Queue, real-time hospital resource checks (ICU beds, ventilators, ER status), Google Maps API for distance & travel time matrix estimation, moving-average/z-score anomaly detection for surge outbreaks, and Twilio automated instant SMS & Call dispatch notifications.",
+    category: "Full Stack",
+    techStack: ["Spring Boot", "React.js", "PostgreSQL", "WebSocket / SSE", "Google Maps API", "Twilio", "Java", "Tailwind CSS"],
+    githubUrl: "https://github.com/yashwan7/smart-emergency-response-router",
+    liveDemoUrl: "https://emergenry-router.vercel.app/",
+    image: "/images/smart-emergency-router.jpg",
+    screenshots: [
+      "/images/smart-emergency-router.jpg"
+    ],
+    status: "Production",
+    highlights: [
+      "ESI-Inspired Severity Scoring (Levels 1–5) based on vitals & symptoms",
+      "Starvation-Safe Aging Priority Queue (Dynamic Priority = Severity + Wait Time)",
+      "Smart Hospital Resource Feasibility Check (ICU Beds, Ventilators & ER Status)",
+      "Live Google Maps Distance Matrix API Integration for real-time travel times",
+      "Surge & Outbreak Anomaly Detection via moving average and z-score metrics",
+      "Automated Instant SMS & Call Notifications powered by Twilio API"
+    ]
+  },
+  {
     id: "cloud-native-gateway",
     title: "Cloud Native API Gateway",
     shortDescription: "Secure, scalable, and observable cloud native API Gateway platform to manage, secure, and route microservices with ease.",
