@@ -119,25 +119,25 @@ export const TECH_STACK: TechItem[] = [
 
 export const PROJECTS: Project[] = [
   {
-    id: "orthotwin-ai-digital-twin",
-    title: "OrthoTwin — AI Patient-Specific Digital Twins",
-    shortDescription: "AI-powered digital twin platform for shoulder replacement planning, 3D bone reconstruction from CT scans, and virtual surgical planning.",
-    fullDescription: "Developed for Medha Medithon 2026, OrthoTwin is an AI-powered digital twin platform for patient-specific shoulder replacement planning. It transforms routine 2D CT/DICOM scans into high-fidelity 3D bone reconstructions using PyTorch deep learning segmentation and 3D Slicer/VTK. Features a vendor-neutral implant library for comparing implant options in 3D, interactive virtual alignment tools, physics-based Range of Motion (ROM) & impingement risk estimation, and closed-loop Plan vs Post-op surgical deviation analysis.",
-    category: "AI / ML",
-    techStack: ["Python", "PyTorch", "3D Slicer / VTK", "OpenCV", "FastAPI", "DICOM / NIfTI", "React.js"],
-    githubUrl: "https://github.com/yashwan7/OrthoTwin",
-    liveDemoUrl: "https://ortho-twin.vercel.app/",
-    image: "/images/orthotwin-cover.jpg",
+    id: "cloud-native-gateway",
+    title: "Cloud Native API Gateway",
+    shortDescription: "Secure, scalable, and observable cloud native API Gateway platform to manage, secure, and route microservices with ease.",
+    fullDescription: "Architected an enterprise-grade Cloud Native API Gateway platform built on Spring Cloud Gateway, Reactive Netty, Redis, and Kubernetes. Features JWT/RBAC authentication, Redis rate limiting, dynamic routing & load balancing, circuit breaking, and full distributed tracing & observability with Prometheus, Grafana, and Jaeger.",
+    category: "Cloud",
+    techStack: ["Spring Cloud Gateway", "Redis", "Kubernetes", "Kafka", "Prometheus", "Grafana", "Jaeger"],
+    githubUrl: "https://github.com/yashwan7/cloud-native-api-gateway",
+    liveDemoUrl: "https://github.com/yashwan7/cloud-native-api-gateway",
+    demoVideoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    image: "/images/api-gateway-cover.jpg",
     screenshots: [
-      "/images/orthotwin-cover.jpg"
+      "/images/api-gateway-cover.jpg"
     ],
-    status: "Hackathon Winner",
+    status: "Production",
     highlights: [
-      "Deep Learning AI CT Segmentation & 3D Bone Reconstruction (PyTorch & VTK)",
-      "Vendor-Neutral Implant Library for comparing multiple implant brands in 3D",
-      "Interactive Virtual 3D Planning for sizing, alignment & joint positioning",
-      "Physics-based Range of Motion (ROM) & Impingement Risk Estimation",
-      "Closed-Loop Plan vs Post-Op CT Deviation Analysis & Clinical Reporting"
+      "JWT / RBAC Authentication & Authorization security layer",
+      "Redis sliding-window rate limiting & distributed caching",
+      "Circuit breaking resilience & dynamic microservice route load balancing",
+      "Full observability with Prometheus, Grafana & Jaeger distributed tracing"
     ]
   },
   {
@@ -164,25 +164,25 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
-    id: "cloud-native-gateway",
-    title: "Cloud Native API Gateway",
-    shortDescription: "Secure, scalable, and observable cloud native API Gateway platform to manage, secure, and route microservices with ease.",
-    fullDescription: "Architected an enterprise-grade Cloud Native API Gateway platform built on Spring Cloud Gateway, Reactive Netty, Redis, and Kubernetes. Features JWT/RBAC authentication, Redis rate limiting, dynamic routing & load balancing, circuit breaking, and full distributed tracing & observability with Prometheus, Grafana, and Jaeger.",
-    category: "Cloud",
-    techStack: ["Spring Cloud Gateway", "Redis", "Kubernetes", "Kafka", "Prometheus", "Grafana", "Jaeger"],
-    githubUrl: "https://github.com/yashwan7/cloud-native-api-gateway",
-    liveDemoUrl: "https://github.com/yashwan7/cloud-native-api-gateway",
-    demoVideoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    image: "/images/api-gateway-cover.jpg",
+    id: "orthotwin-ai-digital-twin",
+    title: "OrthoTwin — AI Patient-Specific Digital Twins",
+    shortDescription: "AI-powered digital twin platform for shoulder replacement planning, 3D bone reconstruction from CT scans, and virtual surgical planning.",
+    fullDescription: "Developed for Medha Medithon 2026, OrthoTwin is an AI-powered digital twin platform for patient-specific shoulder replacement planning. It transforms routine 2D CT/DICOM scans into high-fidelity 3D bone reconstructions using PyTorch deep learning segmentation and 3D Slicer/VTK. Features a vendor-neutral implant library for comparing implant options in 3D, interactive virtual alignment tools, physics-based Range of Motion (ROM) & impingement risk estimation, and closed-loop Plan vs Post-op surgical deviation analysis.",
+    category: "AI / ML",
+    techStack: ["Python", "PyTorch", "3D Slicer / VTK", "OpenCV", "FastAPI", "DICOM / NIfTI", "React.js"],
+    githubUrl: "https://github.com/yashwan7/OrthoTwin",
+    liveDemoUrl: "https://ortho-twin.vercel.app/",
+    image: "/images/orthotwin-cover.jpg",
     screenshots: [
-      "/images/api-gateway-cover.jpg"
+      "/images/orthotwin-cover.jpg"
     ],
-    status: "Production",
+    status: "Hackathon Winner",
     highlights: [
-      "JWT / RBAC Authentication & Authorization security layer",
-      "Redis sliding-window rate limiting & distributed caching",
-      "Circuit breaking resilience & dynamic microservice route load balancing",
-      "Full observability with Prometheus, Grafana & Jaeger distributed tracing"
+      "Deep Learning AI CT Segmentation & 3D Bone Reconstruction (PyTorch & VTK)",
+      "Vendor-Neutral Implant Library for comparing multiple implant brands in 3D",
+      "Interactive Virtual 3D Planning for sizing, alignment & joint positioning",
+      "Physics-based Range of Motion (ROM) & Impingement Risk Estimation",
+      "Closed-Loop Plan vs Post-Op CT Deviation Analysis & Clinical Reporting"
     ]
   },
   {
