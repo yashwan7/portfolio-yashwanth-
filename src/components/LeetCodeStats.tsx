@@ -8,24 +8,24 @@ export const LeetCodeStats: React.FC = () => {
   const username = 'yashwanth_sn';
 
   const [stats, setStats] = useState({
-    totalSolved: 105,
-    easySolved: 42,
-    mediumSolved: 51,
-    hardSolved: 12,
-    globalRanking: 'Top 18%',
+    totalSolved: 137,
+    easySolved: 79,
+    mediumSolved: 45,
+    hardSolved: 13,
+    globalRanking: '#1,264,576',
   });
 
   useEffect(() => {
-    fetch(`https://leetcode-stats-api.herokuapp.com/${username}`)
+    fetch(`https://leetcode-stats-api.vercel.app/${username}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === 'success' && data.totalSolved) {
+        if (data && typeof data.totalSolved === 'number' && data.totalSolved > 0) {
           setStats({
             totalSolved: data.totalSolved,
-            easySolved: data.easySolved,
-            mediumSolved: data.mediumSolved,
-            hardSolved: data.hardSolved,
-            globalRanking: data.ranking ? `#${data.ranking}` : 'Top 18%',
+            easySolved: data.easySolved || 0,
+            mediumSolved: data.mediumSolved || 0,
+            hardSolved: data.hardSolved || 0,
+            globalRanking: data.ranking ? `#${Number(data.ranking).toLocaleString()}` : '#1,264,576',
           });
         }
       })

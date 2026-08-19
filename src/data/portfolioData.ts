@@ -77,7 +77,7 @@ export const PERSONAL_INFO = {
 };
 
 export const STATS = [
-  { id: 1, label: "LeetCode Solved", value: 100, suffix: "+", highlight: "Problem Solving" },
+  { id: 1, label: "LeetCode Solved", value: 135, suffix: "+", highlight: "Problem Solving" },
   { id: 2, label: "EcoSpark 2026", value: 3, suffix: "rd Place", highlight: "Hackathon Podia" },
   { id: 3, label: "GDG TechSprint", value: 10, suffix: " Top", highlight: "National Rank" },
   { id: 4, label: "Suzlon Award", value: 2026, suffix: " Winner", highlight: "Young Brilliance" },
@@ -280,7 +280,7 @@ export const CERTIFICATES: Certificate[] = [
   },
   {
     id: "cert-leetcode-100",
-    title: "100+ LeetCode Milestone & Contest Rating",
+    title: "135+ LeetCode Milestone & Contest Rating",
     issuer: "LeetCode",
     date: "2026",
     category: "Competitive Coding",
@@ -322,7 +322,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: "ach-4",
-    title: "100+ LeetCode Solved & Algorithmic Proficiency",
+    title: "135+ LeetCode Solved & Algorithmic Proficiency",
     subtitle: "Data Structures & Algorithms",
     organization: "LeetCode",
     date: "Continuous",

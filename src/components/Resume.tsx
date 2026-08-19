@@ -95,7 +95,7 @@ export const ResumeSection: React.FC<{ onOpenModal: () => void }> = ({ onOpenMod
     'Cloud & Infrastructure: Docker, Kubernetes, Redis, Linux',
     'AI & Automation: Python, LangChain, Vector RAG',
     'National Awards: Suzlon Award 2026 & EcoSpark 2026 Winner',
-    '100+ Algorithmic Problems Solved on LeetCode',
+    '135+ Algorithmic Problems Solved on LeetCode',
   ];
 
   return (
