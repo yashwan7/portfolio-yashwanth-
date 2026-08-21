@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CatCursor } from './components/CatCursor';
 import { Navbar } from './components/Navbar';
+import { IntroSection } from './components/IntroSection';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { TechStack } from './components/TechStack';
@@ -50,7 +51,13 @@ export const App: React.FC = () => {
 
         {/* Inner Content Area */}
         <div className="mx-auto sm:w-[calc(100%-120px)] w-full max-w-4xl relative">
-          <main>
+          
+          {/* Split-Flap Vestaboard Intro Greeting */}
+          <IntroSection />
+
+          <div className="border-b border-dashed border-white/[0.08] my-4" />
+
+          <main id="main-content">
             <Hero onOpenResumeModal={() => setIsResumeModalOpen(true)} />
 
             <div className="border-b border-dashed border-white/[0.08] my-4" />
