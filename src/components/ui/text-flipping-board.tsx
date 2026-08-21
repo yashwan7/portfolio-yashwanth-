@@ -6,6 +6,15 @@ import { cn } from "../../lib/utils";
 
 const CHAR_SET = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_+=/.,:;?'\"";
 
+const FLIP_COLORS = [
+  "bg-blue-600 text-white",
+  "bg-emerald-600 text-white",
+  "bg-amber-500 text-white",
+  "bg-indigo-600 text-white",
+  "bg-rose-600 text-white",
+  "bg-teal-600 text-white",
+];
+
 export interface SplitFlapCellProps {
   char: string;
   previousChar?: string;
@@ -15,7 +24,6 @@ export interface SplitFlapCellProps {
   audioCtx?: AudioContext | null;
   className?: string;
   textClassName?: string;
-  size?: "xs" | "sm" | "md" | "lg" | "auto";
 }
 
 const playFlapAudio = (ctx?: AudioContext | null) => {
@@ -24,11 +32,11 @@ const playFlapAudio = (ctx?: AudioContext | null) => {
     if (ctx.state === "suspended") {
       ctx.resume();
     }
-    const bufferSize = Math.floor(ctx.sampleRate * 0.015);
+    const bufferSize = Math.floor(ctx.sampleRate * 0.012);
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) {
-      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.25));
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
     }
 
     const noise = ctx.createBufferSource();
@@ -36,12 +44,13 @@ const playFlapAudio = (ctx?: AudioContext | null) => {
 
     const filter = ctx.createBiquadFilter();
     filter.type = "bandpass";
-    filter.frequency.setValueAtTime(950 + Math.random() * 300, ctx.currentTime);
-    filter.Q.setValueAtTime(3, ctx.currentTime);
+    filter.frequency.setValueAtTime(800 + Math.random() * 250, ctx.currentTime);
+    filter.Q.setValueAtTime(3.5, ctx.currentTime);
 
     const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.06, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.018);
+    // Gentle, soft mechanical sound volume
+    gain.gain.setValueAtTime(0.025, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.015);
 
     noise.connect(filter);
     filter.connect(gain);
@@ -49,7 +58,7 @@ const playFlapAudio = (ctx?: AudioContext | null) => {
 
     noise.start();
   } catch {
-    // Audio context may be blocked before interaction
+    // Ignore audio permission errors
   }
 };
 
@@ -61,13 +70,13 @@ export const SplitFlapCell: React.FC<SplitFlapCellProps> = ({
   audioCtx,
   className,
   textClassName,
-  size = "auto",
 }) => {
   const targetChar = (char || " ").toUpperCase();
   const [currentChar, setCurrentChar] = useState(targetChar);
   const [prevChar, setPrevChar] = useState(targetChar);
   const [isFlipping, setIsFlipping] = useState(false);
   const [flipKey, setFlipKey] = useState(0);
+  const [colorClass, setColorClass] = useState<string | null>(null);
 
   const prevTargetRef = useRef(targetChar);
 
@@ -81,23 +90,27 @@ export const SplitFlapCell: React.FC<SplitFlapCellProps> = ({
     const intervals: NodeJS.Timeout[] = [];
 
     timeoutId = setTimeout(() => {
-      const steps: string[] = [];
-      const numSteps = Math.max(2, Math.min(6, flipCount + Math.floor(Math.random() * 2)));
+      const steps: { char: string; color: string | null }[] = [];
+      const numSteps = Math.max(2, Math.min(5, flipCount + Math.floor(Math.random() * 2)));
 
       for (let i = 0; i < numSteps - 1; i++) {
         const randIndex = Math.floor(Math.random() * CHAR_SET.length);
-        steps.push(CHAR_SET[randIndex]);
+        // Occasionally show a vibrant Vestaboard color flap
+        const hasColor = Math.random() < 0.25;
+        const color = hasColor ? FLIP_COLORS[Math.floor(Math.random() * FLIP_COLORS.length)] : null;
+        steps.push({ char: CHAR_SET[randIndex], color });
       }
-      steps.push(targetChar);
+      steps.push({ char: targetChar, color: null });
 
       let stepIdx = 0;
       let lastStepChar = oldChar;
 
       const stepInterval = setInterval(() => {
         if (stepIdx < steps.length) {
-          const nextChar = steps[stepIdx];
+          const next = steps[stepIdx];
           setPrevChar(lastStepChar);
-          setCurrentChar(nextChar);
+          setCurrentChar(next.char);
+          setColorClass(next.color);
           setIsFlipping(true);
           setFlipKey((k) => k + 1);
 
@@ -105,13 +118,14 @@ export const SplitFlapCell: React.FC<SplitFlapCellProps> = ({
             playFlapAudio(audioCtx);
           }
 
-          lastStepChar = nextChar;
+          lastStepChar = next.char;
           stepIdx++;
         } else {
           clearInterval(stepInterval);
           setIsFlipping(false);
+          setColorClass(null);
         }
-      }, 65);
+      }, 80);
 
       intervals.push(stepInterval);
     }, delay * 1000);
@@ -122,66 +136,71 @@ export const SplitFlapCell: React.FC<SplitFlapCellProps> = ({
     };
   }, [targetChar, delay, flipCount, sound, audioCtx]);
 
-  const sizeClasses = {
-    xs: "w-3.5 h-5 rounded-[2px]",
-    sm: "w-5 h-7 rounded-[3px]",
-    md: "w-7 h-10 rounded-[4px]",
-    lg: "w-10 h-14 md:w-12 md:h-17 rounded-[5px]",
-    auto: "w-4 h-6 xs:w-5 xs:h-7 sm:w-7 sm:h-10 md:w-8 md:h-12 lg:w-9 lg:h-14 rounded-[3px] sm:rounded-[4px]",
-  }[size];
-
-  const fontSizeClasses = {
-    xs: "text-[9px]",
-    sm: "text-[12px]",
-    md: "text-base sm:text-lg",
-    lg: "text-xl md:text-2xl",
-    auto: "text-[10px] xs:text-xs sm:text-base md:text-lg lg:text-xl",
-  }[size];
+  const isColor = Boolean(colorClass);
 
   return (
     <div
       className={cn(
-        "relative bg-[#18181b] select-none shadow-[0_2px_8px_rgba(0,0,0,0.6)] border border-neutral-800/90 flex flex-col justify-between overflow-hidden",
-        sizeClasses,
+        "relative w-[13px] h-[22px] xs:w-[17px] xs:h-[28px] sm:w-[22px] sm:h-[36px] md:w-[28px] md:h-[46px] lg:w-[34px] lg:h-[54px] rounded-[3px] sm:rounded-[4px] select-none shadow-[0_1px_3px_rgba(0,0,0,0.12)] border border-[#d6d8dd] flex flex-col justify-between overflow-hidden transition-colors",
+        isColor ? colorClass : "bg-[#fafafa]",
         className
       )}
       style={{ perspective: "600px" }}
     >
       {/* Top Half Fixed */}
-      <div className="relative w-full h-1/2 bg-[#1d1d22] overflow-hidden border-b border-black/90 rounded-t-[2px]">
+      <div
+        className={cn(
+          "relative w-full h-1/2 overflow-hidden border-b border-[#c8cbd0] rounded-t-[2px]",
+          isColor ? "bg-inherit" : "bg-[#ffffff]"
+        )}
+      >
         <div className="absolute inset-0 flex items-center justify-center translate-y-1/2">
           <span
             className={cn(
-              "font-mono font-bold text-neutral-100 leading-none tracking-widest",
-              fontSizeClasses,
+              "font-mono font-bold leading-none tracking-tight text-[11px] xs:text-[14px] sm:text-[18px] md:text-[23px] lg:text-[28px]",
+              isColor ? "text-white" : "text-[#18181b]",
               textClassName
             )}
           >
             {currentChar}
           </span>
         </div>
-        {/* Top Glare */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.08] to-transparent pointer-events-none" />
+        {/* Subtle Glare */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent pointer-events-none" />
       </div>
 
-      {/* Bottom Half Fixed */}
-      <div className="relative w-full h-1/2 bg-[#141416] overflow-hidden rounded-b-[2px]">
+      {/* Bottom Half Fixed with Etched Rib Lines */}
+      <div
+        className={cn(
+          "relative w-full h-1/2 overflow-hidden rounded-b-[2px]",
+          isColor ? "bg-inherit" : "bg-[#f4f4f5]"
+        )}
+      >
         <div className="absolute inset-0 flex items-center justify-center -translate-y-1/2">
           <span
             className={cn(
-              "font-mono font-bold text-neutral-100 leading-none tracking-widest",
-              fontSizeClasses,
+              "font-mono font-bold leading-none tracking-tight text-[11px] xs:text-[14px] sm:text-[18px] md:text-[23px] lg:text-[28px]",
+              isColor ? "text-white" : "text-[#18181b]",
               textClassName
             )}
           >
             {currentChar}
           </span>
         </div>
-        {/* Bottom Shadow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+
+        {/* Ribbed lines on bottom flap - exact to Vestaboard */}
+        {!isColor && (
+          <div
+            className="absolute inset-0 opacity-20 pointer-events-none"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 3px)",
+            }}
+          />
+        )}
       </div>
 
-      {/* Animated Flipping Flap */}
+      {/* Animated Top Flap 3D Flip */}
       <AnimatePresence mode="popLayout">
         {isFlipping && (
           <motion.div
@@ -189,33 +208,37 @@ export const SplitFlapCell: React.FC<SplitFlapCellProps> = ({
             initial={{ rotateX: 0 }}
             animate={{ rotateX: -180 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.13, ease: "easeInOut" }}
+            transition={{ duration: 0.16, ease: "easeInOut" }}
             style={{
               transformOrigin: "bottom center",
               transformStyle: "preserve-3d",
             }}
-            className="absolute top-0 left-0 w-full h-1/2 bg-[#1d1d22] border-b border-black/90 rounded-t-[2px] overflow-hidden z-20"
+            className={cn(
+              "absolute top-0 left-0 w-full h-1/2 border-b border-[#c8cbd0] rounded-t-[2px] overflow-hidden z-20",
+              isColor ? colorClass : "bg-[#ffffff]"
+            )}
           >
             <div className="absolute inset-0 flex items-center justify-center translate-y-1/2">
               <span
                 className={cn(
-                  "font-mono font-bold text-neutral-100 leading-none tracking-widest",
-                  fontSizeClasses,
+                  "font-mono font-bold leading-none tracking-tight text-[11px] xs:text-[14px] sm:text-[18px] md:text-[23px] lg:text-[28px]",
+                  isColor ? "text-white" : "text-[#18181b]",
                   textClassName
                 )}
               >
                 {prevChar}
               </span>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/40 pointer-events-none" />
+            {/* Darkening shadow on flip */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 pointer-events-none" />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Center Hinge & Notch Marks */}
-      <div className="absolute top-1/2 left-0 w-full h-[1px] bg-black/95 -translate-y-1/2 z-30" />
-      <div className="absolute top-1/2 left-0 w-[1.5px] h-[3px] bg-neutral-900 -translate-y-1/2 z-40" />
-      <div className="absolute top-1/2 right-0 w-[1.5px] h-[3px] bg-neutral-900 -translate-y-1/2 z-40" />
+      {/* Split Line & Hinge notches */}
+      <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#9ca3af]/40 -translate-y-1/2 z-30" />
+      <div className="absolute top-1/2 left-0 w-[1.5px] h-[3px] bg-[#9ca3af]/80 -translate-y-1/2 z-40 rounded-r-[1px]" />
+      <div className="absolute top-1/2 right-0 w-[1.5px] h-[3px] bg-[#9ca3af]/80 -translate-y-1/2 z-40 rounded-l-[1px]" />
     </div>
   );
 };
@@ -224,32 +247,31 @@ export interface TextFlippingBoardProps {
   text?: string;
   rows?: string[];
   cols?: number;
+  totalRows?: number;
   minRows?: number;
   sound?: boolean;
-  size?: "xs" | "sm" | "md" | "lg" | "auto";
   className?: string;
   boardClassName?: string;
   tileClassName?: string;
   textClassName?: string;
   stagger?: number;
-  headerTitle?: string;
 }
 
 export const TextFlippingBoard: React.FC<TextFlippingBoardProps> = ({
   text = "",
   rows: customRows,
-  cols: customCols,
-  minRows = 3,
+  cols = 24,
+  totalRows = 6,
+  minRows,
   sound = false,
-  size = "auto",
   className,
   boardClassName,
   tileClassName,
   textClassName,
-  stagger = 0.03,
-  headerTitle = "TERMINAL // VESTABOARD",
+  stagger = 0.025,
 }) => {
   const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
+  const effectiveRows = minRows || totalRows;
 
   useEffect(() => {
     if (sound && typeof window !== "undefined") {
@@ -265,7 +287,7 @@ export const TextFlippingBoard: React.FC<TextFlippingBoardProps> = ({
     }
   }, [sound]);
 
-  // Compute rows and columns
+  // Format text into rows
   const parsedRows = useMemo(() => {
     if (customRows && customRows.length > 0) {
       return customRows;
@@ -273,60 +295,50 @@ export const TextFlippingBoard: React.FC<TextFlippingBoardProps> = ({
     return text.split("\n");
   }, [text, customRows]);
 
-  const maxCols = useMemo(() => {
-    if (customCols) return customCols;
-    const longestLine = Math.max(...parsedRows.map((r) => r.length), 10);
-    return Math.max(longestLine, 18);
-  }, [parsedRows, customCols]);
-
-  const totalRowsCount = useMemo(() => {
-    return Math.max(parsedRows.length, minRows);
-  }, [parsedRows, minRows]);
-
-  // Format grid cells
+  // Center vertical placement if fewer rows provided
   const grid = useMemo(() => {
     const lines: string[] = [];
-    for (let r = 0; r < totalRowsCount; r++) {
-      const line = parsedRows[r] || "";
-      const padded = line.padEnd(maxCols, " ").slice(0, maxCols);
-      lines.push(padded);
+    const contentRows = parsedRows.length;
+    const topPad = Math.max(0, Math.floor((effectiveRows - contentRows) / 2));
+
+    for (let r = 0; r < effectiveRows; r++) {
+      if (r < topPad || r >= topPad + contentRows) {
+        lines.push(" ".repeat(cols));
+      } else {
+        const rawLine = parsedRows[r - topPad] || "";
+        const trimmed = rawLine.slice(0, cols);
+        // Center text horizontally in row
+        const totalPad = Math.max(0, cols - trimmed.length);
+        const padLeft = Math.floor(totalPad / 2);
+        const padRight = totalPad - padLeft;
+        const centered = " ".repeat(padLeft) + trimmed + " ".repeat(padRight);
+        lines.push(centered);
+      }
     }
     return lines;
-  }, [parsedRows, totalRowsCount, maxCols]);
+  }, [parsedRows, effectiveRows, cols]);
 
   return (
     <div
       className={cn(
-        "inline-flex flex-col p-3 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-[#09090b] border border-neutral-800 shadow-2xl overflow-x-auto max-w-full",
+        "inline-flex flex-col p-3 xs:p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl bg-[#f0f1f4] border border-[#d2d5dc] shadow-[0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden max-w-full",
         className
       )}
     >
-      {/* Vestaboard Outer Frame Header */}
-      <div className="flex items-center justify-between pb-2.5 sm:pb-3 mb-2.5 sm:mb-3 border-b border-neutral-800/80 px-1">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[10px] sm:text-xs font-mono tracking-widest text-neutral-400 uppercase">
-            {headerTitle}
-          </span>
-        </div>
-        <div className="flex items-center gap-2 text-[9px] sm:text-[11px] font-mono text-neutral-500">
-          <span>STATUS: LIVE</span>
-          <span>•</span>
-          <span>{totalRowsCount}x{maxCols}</span>
-        </div>
-      </div>
-
-      {/* The Flap Grid */}
+      {/* Flap Grid Container */}
       <div
         className={cn(
-          "flex flex-col gap-1 sm:gap-1.5 items-center justify-center p-2 sm:p-3 rounded-lg bg-black/70 border border-neutral-900",
+          "flex flex-col gap-[3px] xs:gap-[4px] sm:gap-[5px] md:gap-[6px] items-center justify-center p-2 sm:p-3 md:p-4 rounded-xl md:rounded-2xl bg-[#e5e7eb]/80 border border-[#d1d5db]",
           boardClassName
         )}
       >
         {grid.map((rowText, rowIndex) => (
-          <div key={rowIndex} className="flex gap-0.5 sm:gap-1 md:gap-1.5 justify-center">
+          <div
+            key={rowIndex}
+            className="flex gap-[2px] xs:gap-[3px] sm:gap-[4px] md:gap-[5px] justify-center"
+          >
             {rowText.split("").map((char, colIndex) => {
-              const delay = (rowIndex * 0.1) + (colIndex * stagger);
+              const delay = rowIndex * 0.08 + colIndex * stagger;
               return (
                 <SplitFlapCell
                   key={`${rowIndex}-${colIndex}`}
@@ -334,7 +346,6 @@ export const TextFlippingBoard: React.FC<TextFlippingBoardProps> = ({
                   delay={delay}
                   sound={sound}
                   audioCtx={audioCtx}
-                  size={size}
                   className={tileClassName}
                   textClassName={textClassName}
                 />

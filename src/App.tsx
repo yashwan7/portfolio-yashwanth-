@@ -26,8 +26,13 @@ export const App: React.FC = () => {
       {/* Minimal Top Header Navbar */}
       <Navbar onOpenResumeModal={() => setIsResumeModalOpen(true)} />
 
+      {/* Full-Width Intro Vestaboard Screen - Uses full space with zero clipping */}
+      <div className="w-full pt-14">
+        <IntroSection />
+      </div>
+
       {/* Main Outer Container Frame - Inspired by lakshyaworks.dev */}
-      <div className="relative mx-auto max-w-4xl min-h-screen pt-14">
+      <div id="main-portfolio" className="relative mx-auto max-w-4xl min-h-screen">
         
         {/* Left Side Hatched Border Column */}
         <div className="absolute left-0 top-0 w-[60px] h-full overflow-hidden sm:block hidden pointer-events-none z-10">
@@ -51,12 +56,6 @@ export const App: React.FC = () => {
 
         {/* Inner Content Area */}
         <div className="mx-auto sm:w-[calc(100%-120px)] w-full max-w-4xl relative">
-          
-          {/* Split-Flap Vestaboard Intro Greeting */}
-          <IntroSection />
-
-          <div className="border-b border-dashed border-white/[0.08] my-4" />
-
           <main id="main-content">
             <Hero onOpenResumeModal={() => setIsResumeModalOpen(true)} />
 
