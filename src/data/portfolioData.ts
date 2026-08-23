@@ -119,6 +119,28 @@ export const TECH_STACK: TechItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: "anukool-accessibility-platform",
+    title: "ANUKOOL — Adaptive Digital Accessibility Platform",
+    shortDescription: "AI-powered multi-modal accessibility platform empowering every citizen with Indic voice AI, adaptive motor interfaces & cognitive simplification.",
+    fullDescription: "Built for CODEFURY 9.0, ANUKOOL is a next-generation adaptive digital accessibility and inclusion platform engineered to bridge the digital divide. It empowers citizens across all abilities through Indic voice assistance powered by Sarvam AI (supporting 8+ regional Indian languages), SteadyTap Shield motor tremor stabilization, Tesseract.js real-time document OCR & cognitive summarization, safe banking with scam shield awareness, and an automated WCAG 2.1 AA & GIGW accessibility audit engine.",
+    category: "AI / ML",
+    techStack: ["Next.js 14", "React.js", "Sarvam AI", "Tesseract.js OCR", "Supabase", "MongoDB Atlas", "Tailwind CSS", "Web Speech API"],
+    githubUrl: "https://github.com/yashwan7/git-push-my-luck",
+    liveDemoUrl: "https://anukool-nu.vercel.app/",
+    image: "/images/anukool-cover.jpg",
+    screenshots: [
+      "/images/anukool-cover.jpg"
+    ],
+    status: "Hackathon Winner",
+    highlights: [
+      "Indic Voice Assistant powered by Sarvam AI supporting 8+ regional Indian languages",
+      "Adaptive Vision & Motor Interface with SteadyTap Shield for tremor stabilization",
+      "Document OCR & Cognitive Simplifier for instant document breakdown & translation",
+      "Safe Banking & Scam Awareness shield protecting vulnerable users from fraud",
+      "Automated Accessibility Audit Engine fully aligned with WCAG 2.1 AA & GIGW standards"
+    ]
+  },
+  {
     id: "cloud-native-gateway",
     title: "Cloud Native API Gateway",
     shortDescription: "Secure, scalable, and observable cloud native API Gateway platform to manage, secure, and route microservices with ease.",
