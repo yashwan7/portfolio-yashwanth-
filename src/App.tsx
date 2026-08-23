@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { CatCursor } from './components/CatCursor';
 import { Navbar } from './components/Navbar';
-import { IntroSection } from './components/IntroSection';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { TechStack } from './components/TechStack';
@@ -25,11 +24,6 @@ export const App: React.FC = () => {
 
       {/* Minimal Top Header Navbar */}
       <Navbar onOpenResumeModal={() => setIsResumeModalOpen(true)} />
-
-      {/* Full-Width Intro Vestaboard Screen - Uses full space with zero clipping */}
-      <div className="w-full pt-14">
-        <IntroSection />
-      </div>
 
       {/* Main Outer Container Frame - Inspired by lakshyaworks.dev */}
       <div id="main-portfolio" className="relative mx-auto max-w-4xl min-h-screen">
