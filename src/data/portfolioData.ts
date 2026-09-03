@@ -341,16 +341,6 @@ export const ACHIEVEMENTS: Achievement[] = [
     type: "Competition",
     description: "Ranked in the top 10 finalists nationwide for building cloud-native infrastructure tooling and resilient microservice backend systems.",
     image: "/images/cert-gdg.png"
-  },
-  {
-    id: "ach-4",
-    title: "135+ LeetCode Solved & Algorithmic Proficiency",
-    subtitle: "Data Structures & Algorithms",
-    organization: "LeetCode",
-    date: "Continuous",
-    type: "Recognition",
-    description: "Consistently solved complex algorithmic challenges spanning Dynamic Programming, Graph Theory, and Distributed Systems.",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
