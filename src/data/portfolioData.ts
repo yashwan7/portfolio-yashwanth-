@@ -122,7 +122,7 @@ export const PROJECTS: Project[] = [
     id: "anukool-accessibility-platform",
     title: "ANUKOOL — Adaptive Digital Accessibility Platform",
     shortDescription: "AI-powered multi-modal accessibility platform empowering every citizen with Indic voice AI, adaptive motor interfaces & cognitive simplification.",
-    fullDescription: "Built for CODEFURY 9.0, ANUKOOL is a next-generation adaptive digital accessibility and inclusion platform engineered to bridge the digital divide. It empowers citizens across all abilities through Indic voice assistance powered by Sarvam AI (supporting 8+ regional Indian languages), SteadyTap Shield motor tremor stabilization, Tesseract.js real-time document OCR & cognitive summarization, safe banking with scam shield awareness, and an automated WCAG 2.1 AA & GIGW accessibility audit engine.",
+    fullDescription: "ANUKOOL is a next-generation adaptive digital accessibility and inclusion platform engineered to bridge the digital divide. It empowers citizens across all abilities through Indic voice assistance powered by Sarvam AI (supporting 8+ regional Indian languages), SteadyTap Shield motor tremor stabilization, Tesseract.js real-time document OCR & cognitive summarization, safe banking with scam shield awareness, and an automated WCAG 2.1 AA & GIGW accessibility audit engine.",
     category: "AI / ML",
     techStack: ["Next.js 14", "React.js", "Sarvam AI", "Tesseract.js OCR", "Supabase", "MongoDB Atlas", "Tailwind CSS", "Web Speech API"],
     githubUrl: "https://github.com/yashwan7/git-push-my-luck",
@@ -131,7 +131,7 @@ export const PROJECTS: Project[] = [
     screenshots: [
       "/images/anukool-cover.jpg"
     ],
-    status: "Hackathon Winner",
+    status: "Production",
     highlights: [
       "Indic Voice Assistant powered by Sarvam AI supporting 8+ regional Indian languages",
       "Adaptive Vision & Motor Interface with SteadyTap Shield for tremor stabilization",
