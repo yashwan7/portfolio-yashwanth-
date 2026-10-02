@@ -256,6 +256,24 @@ export const PROJECTS: Project[] = [
 
 export const CERTIFICATES: Certificate[] = [
   {
+    id: "cert-icarus",
+    title: "1st Place Winner — ICARUS CanSat Telemetry Challenge",
+    issuer: "RV University (School of Computer Science & Engineering)",
+    date: "Sept 2026",
+    category: "Competitive Coding",
+    thumbnail: "/images/cert-icarus.jpg",
+    credentialUrl: "https://www.linkedin.com/posts/yashwanthgowdasn_icarus-python-coding-ugcPost-7511463024059158528-Dxvr/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFyQEkQBSJNZwSE70FSJYOewImmJ5FfTVe0",
+  },
+  {
+    id: "cert-gitsetgo",
+    title: "2nd Place Winner — GitSetGo! Open Source Relay Race",
+    issuer: "RV University (School of Computer Science & Engineering)",
+    date: "Sept 2026",
+    category: "Hackathons",
+    thumbnail: "/images/cert-gitsetgo.jpg",
+    credentialUrl: "https://www.linkedin.com/posts/yashwanthgowdasn_gitsetgo-github-opensource-ugcPost-7511451879386599425-9skz/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFyQEkQBSJNZwSE70FSJYOewImmJ5FfTVe0",
+  },
+  {
     id: "cert-suzlon",
     title: "Suzlon Young Brilliance National Award 2026",
     issuer: "Suzlon Group (The Wind Man Shri Tulsi Tanti Awards)",
@@ -313,6 +331,26 @@ export const CERTIFICATES: Certificate[] = [
 
 export const ACHIEVEMENTS: Achievement[] = [
   {
+    id: "ach-icarus",
+    title: "1st Prize — ICARUS CanSat Telemetry Analysis",
+    subtitle: "Podium Champion (Kalpavikas 2.0)",
+    organization: "RV University & KSIT",
+    date: "2026",
+    type: "Competition",
+    description: "Secured 1st Prize at ICARUS, an aerospace & computing challenge spanning rapid-fire coding fundamentals, Python telemetry data analysis, and mathematical problem-solving on CanSat flight data.",
+    image: "/images/icarus-1st-prize.jpg"
+  },
+  {
+    id: "ach-gitsetgo",
+    title: "2nd Prize — GitSetGo! Open Source Relay Race",
+    subtitle: "Podium Runner-Up (Kalpavikas 2.0)",
+    organization: "RV University & KSIT",
+    date: "2026",
+    type: "Competition",
+    description: "Secured 2nd Prize at GitSetGo!, a high-intensity open-source relay race with 3 rigorous stages: Digital Dictionary, logic & problem-solving, and advanced live GitHub PR/Fork/Fix workflow execution.",
+    image: "/images/gitsetgo-2nd-prize.jpg"
+  },
+  {
     id: "ach-1",
     title: "Suzlon Young Brilliance National Award 2026",
     subtitle: "National Winner (₹15,000 Cash Prize)",
@@ -345,6 +383,38 @@ export const ACHIEVEMENTS: Achievement[] = [
 ];
 
 export const GALLERY_ITEMS: PhotoGalleryItem[] = [
+  {
+    id: "gal-icarus",
+    title: "1st Prize — ICARUS CanSat Telemetry Challenge",
+    category: "Winning Moments",
+    image: "/images/icarus-1st-prize.jpg",
+    date: "2026",
+    description: "Receiving the 1st Prize award on stage at the ICARUS CanSat Telemetry Analysis Challenge during Kalpavikas 2.0."
+  },
+  {
+    id: "gal-gitsetgo",
+    title: "2nd Prize — GitSetGo! Open Source Relay Ceremony",
+    category: "Winning Moments",
+    image: "/images/gitsetgo-2nd-prize.jpg",
+    date: "2026",
+    description: "Receiving the 2nd Prize on stage for GitSetGo! Open Source Relay Race during Kalpavikas 2.0."
+  },
+  {
+    id: "gal-cert-icarus",
+    title: "ICARUS CanSat Telemetry 1st Place Certificate",
+    category: "Awards",
+    image: "/images/cert-icarus.jpg",
+    date: "Sept 2026",
+    description: "Official Certificate of Competence for First Place in ICARUS CanSat Telemetry Analysis Challenge awarded by RV University."
+  },
+  {
+    id: "gal-cert-gitsetgo",
+    title: "GitSetGo! Open Source Relay 2nd Place Certificate",
+    category: "Awards",
+    image: "/images/cert-gitsetgo.jpg",
+    date: "Sept 2026",
+    description: "Official Certificate of Competence for Second Place in GitSetGo! Open Source Relay Race awarded by RV University."
+  },
   {
     id: "gal-1",
     title: "Suzlon Young Brilliance 2026 Stage Award Ceremony",
