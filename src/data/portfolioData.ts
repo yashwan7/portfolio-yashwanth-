@@ -78,8 +78,8 @@ export const PERSONAL_INFO = {
 
 export const STATS = [
   { id: 1, label: "LeetCode Solved", value: 135, suffix: "+", highlight: "Problem Solving" },
-  { id: 2, label: "EcoSpark 2026", value: 3, suffix: "rd Place", highlight: "Hackathon Podia" },
-  { id: 3, label: "GDG TechSprint", value: 10, suffix: " Top", highlight: "National Rank" },
+  { id: 2, label: "MLH Hackday", value: 1, suffix: "st Prize", highlight: "850+ Participants" },
+  { id: 3, label: "EcoSpark 2026", value: 3, suffix: "rd Place", highlight: "Hackathon Podia" },
   { id: 4, label: "Suzlon Award", value: 2026, suffix: " Winner", highlight: "Young Brilliance" },
   { id: 5, label: "GitHub Repos", value: 15, suffix: "+", highlight: "Open Source" },
   { id: 6, label: "Academic CGPA", value: 8.52, suffix: "/10", isDecimal: true, highlight: "Engineering Excellence" },
@@ -118,6 +118,42 @@ export const TECH_STACK: TechItem[] = [
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    id: "resq-mesh",
+    title: "ResQMesh — Tactical Clinical Triage & Mesh Telemetry",
+    shortDescription: "Edge AI & self-healing mesh network for offline tactical clinical triage, TinyML RF link degradation prediction, and verifiable AI.",
+    fullDescription: "ResQMesh is an offline-first tactical clinical triage and telemetry network engineered for disaster response and emergency operations when cellular or internet infrastructure completely collapses ('When the network fails, intelligence stays'). Powered by an NXP FRDM-MCXN236 microcontroller running an INT8-quantized TinyML model (CMSIS-NN & TFLM) to predict RF link degradation in 10.3 ms with 91.8% accuracy. Operates across a peer-to-peer, self-healing ESP32 ESP-NOW mesh network with local SPI flash queuing for zero packet loss. Integrates a Dual-Display HUD (0.96\" OLED for RF/GPS link telemetry and 1.8\" TFT for NATO P1–P4 triage vitals), a 4th-order Butterworth DSP filter for EOG eye-gaze patient communication, and tamper-proof cryptographic proofs using HMAC-SHA256 & Content-Defined Chunking (CDC). Edge intelligence is driven by 'Laya', a deterministic safety arbitration layer dispatching between local compact LLMs (Qwen2.5-0.5B & SmolLM2-360M) with zero hallucinations and strict sensor ID validation, synced to a real-time command dashboard.",
+    category: "AI / ML",
+    techStack: [
+      "TinyML",
+      "NXP MCXN236",
+      "ESP-NOW Mesh",
+      "C/C++",
+      "FreeRTOS",
+      "Qwen2.5 / SmolLM2",
+      "Next.js",
+      "React.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "HMAC-SHA256",
+      "CMSIS-NN"
+    ],
+    githubUrl: "https://github.com/yashwan7/REsq-mesh",
+    liveDemoUrl: "https://dashboard-kvkwyk9is-yashwan7896-7928s-projects.vercel.app",
+    image: "/images/resqmesh-cover.jpg",
+    screenshots: [
+      "/images/resqmesh-cover.jpg"
+    ],
+    status: "Production",
+    highlights: [
+      "TinyML Link Degradation Predictor: INT8 quantized model on NXP Cortex-M33 (CMSIS-NN) predicting RF channel failure in 10.3 ms (91.8% accuracy)",
+      "Offline Self-Healing ESP-NOW Mesh: Peer-to-peer ad-hoc telemetry routing with local flash queue ensuring zero packet loss in complete blackouts",
+      "O3 Verifiable AI & Laya Arbitration: Deterministic safety arbitration layer dispatching between Qwen2.5-0.5B & SmolLM2 with sensor-ID citations and zero hallucinations",
+      "Dual-Display Tactical HUD: 0.96\" OLED for radio link & GPS telemetry paired with 1.8\" TFT for NATO P1–P4 clinical triage protocol switching",
+      "EOG Eye-Gaze Communication: 4th-order Butterworth DSP filter decoding ocular signals for non-verbal immobilized patient signaling (Call Nurse, Pain, Water)",
+      "Cryptographic Telemetry Proof: HMAC-SHA256 packet hashing with Content-Defined Chunking (CDC) deduplication and live interactive radar command dashboard"
+    ]
+  },
   {
     id: "anukool-accessibility-platform",
     title: "ANUKOOL — Adaptive Digital Accessibility Platform",
@@ -256,6 +292,15 @@ export const PROJECTS: Project[] = [
 
 export const CERTIFICATES: Certificate[] = [
   {
+    id: "cert-mlh-hacktoberfest",
+    title: "1st Place Winner — MLH Hacktoberfest Hackday",
+    issuer: "Major League Hacking (MLH) & DigitalOcean",
+    date: "Oct 2026",
+    category: "Hackathons",
+    thumbnail: "/images/mlh-hacktoberfest-1st-prize.png",
+    credentialUrl: "https://www.linkedin.com/in/yashwanthgowdasn",
+  },
+  {
     id: "cert-icarus",
     title: "1st Place Winner — ICARUS CanSat Telemetry Challenge",
     issuer: "RV University (School of Computer Science & Engineering)",
@@ -331,6 +376,16 @@ export const CERTIFICATES: Certificate[] = [
 
 export const ACHIEVEMENTS: Achievement[] = [
   {
+    id: "ach-mlh-hacktoberfest",
+    title: "1st Prize Winner — MLH Hacktoberfest Hackday",
+    subtitle: "Team IZANAGI — Champion (₹40,000 Prize Package)",
+    organization: "Major League Hacking (MLH) & Startup Park",
+    date: "2026",
+    type: "Hackathon",
+    description: "Competed in MLH Hacktoberfest, a flagship-level hack day with approximately 850 registered participants. Around 300 participants were selected for the first round at Startup Park, Madiwala. Our team successfully qualified for the finals and secured 1st Prize. Awarded a total prize package worth ₹40,000, including three Arduino Uno Q boards (worth ₹10,000 each), ₹10,000 in cash, ARMORIQ T-shirts, MLH stickers and swags, along with $500 in Sarvam AI credits.",
+    image: "/images/mlh-hacktoberfest-1st-prize.png"
+  },
+  {
     id: "ach-icarus",
     title: "1st Prize — ICARUS CanSat Telemetry Analysis",
     subtitle: "Podium Champion (Kalpavikas 2.0)",
@@ -383,6 +438,14 @@ export const ACHIEVEMENTS: Achievement[] = [
 ];
 
 export const GALLERY_ITEMS: PhotoGalleryItem[] = [
+  {
+    id: "gal-mlh-hacktoberfest",
+    title: "1st Prize — MLH Hacktoberfest Hackday Champion",
+    category: "Winning Moments",
+    image: "/images/mlh-hacktoberfest-1st-prize.png",
+    date: "2026",
+    description: "Holding the 1st Prize Winner cheque of ₹40,000 with Team IZANAGI at MLH Hacktoberfest Hackday at Startup Park, Madiwala."
+  },
   {
     id: "gal-icarus",
     title: "1st Prize — ICARUS CanSat Telemetry Challenge",
