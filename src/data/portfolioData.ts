@@ -140,12 +140,14 @@ export const PROJECTS: Project[] = [
     ],
     githubUrl: "https://github.com/yashwan7/REsq-mesh",
     liveDemoUrl: "https://dashboard-kvkwyk9is-yashwan7896-7928s-projects.vercel.app",
+    demoVideoUrl: "https://youtu.be/If4ojzezvJY?si=mpkNxpJ-IA9ujanh",
     image: "/images/resqmesh-cover.jpg",
     screenshots: [
       "/images/resqmesh-cover.jpg"
     ],
     status: "Production",
     highlights: [
+      "Hardware Prototype & Embedded Mesh: Custom-built dual-display tactical node with NXP FRDM-MCXN236 MCU, ESP-NOW radios, OLED link telemetry, and TFT triage HUD (Live Hardware Demo Video)",
       "TinyML Link Degradation Predictor: INT8 quantized model on NXP Cortex-M33 (CMSIS-NN) predicting RF channel failure in 10.3 ms (91.8% accuracy)",
       "Offline Self-Healing ESP-NOW Mesh: Peer-to-peer ad-hoc telemetry routing with local flash queue ensuring zero packet loss in complete blackouts",
       "O3 Verifiable AI & Laya Arbitration: Deterministic safety arbitration layer dispatching between Qwen2.5-0.5B & SmolLM2 with sensor-ID citations and zero hallucinations",

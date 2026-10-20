@@ -98,7 +98,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 }`}
               >
                 {project.id === 'cloud-native-gateway' ? <Box className="w-3.5 h-3.5 text-cyan-400" /> : <Video className="w-3.5 h-3.5" />}
-                <span>{project.id === 'cloud-native-gateway' ? 'Interactive 3D Demo' : 'Demo Video'}</span>
+                <span>
+                  {project.id === 'cloud-native-gateway'
+                    ? 'Interactive 3D Demo'
+                    : project.id === 'resq-mesh'
+                    ? 'Hardware Demo Video'
+                    : 'Demo Video'}
+                </span>
               </button>
 
               <button
@@ -254,6 +260,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 <ExternalLink className="w-4 h-4" />
                 <span>Try Live Demo</span>
               </a>
+
+              {/* Direct Video Link */}
+              {project.demoVideoUrl && (
+                <a
+                  href={project.demoVideoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/30 hover:border-red-400 text-red-300 text-xs font-mono font-medium flex items-center gap-2 transition-all hover:bg-red-500/20"
+                  title="Watch Video on YouTube"
+                >
+                  <Play className="w-3.5 h-3.5 fill-red-400 text-red-400" />
+                  <span>{project.id === 'resq-mesh' ? 'Hardware Demo' : 'Watch Video'}</span>
+                </a>
+              )}
             </div>
 
             <button
