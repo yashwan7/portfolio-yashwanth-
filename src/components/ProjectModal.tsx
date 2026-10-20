@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Play, Globe, Image as ImageIcon, CheckCircle2, Video, Box } from 'lucide-react';
+import { X, ExternalLink, Play, Image as ImageIcon, CheckCircle2, Video, Box } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import { Project } from '../data/portfolioData';
 import APIGatewayDemo from './APIGatewayDemo';
@@ -11,7 +11,7 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  const [activeTab, setActiveTab] = useState<'video' | 'website' | 'screenshots'>(
+  const [activeTab, setActiveTab] = useState<'video' | 'screenshots'>(
     project?.demoVideoUrl || project?.id === 'cloud-native-gateway' ? 'video' : 'screenshots'
   );
 
@@ -108,18 +108,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               </button>
 
               <button
-                onClick={() => setActiveTab('website')}
-                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
-                  activeTab === 'website'
-                    ? 'bg-copper-500/20 text-copper-400 border border-copper-500/40'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                <Globe className="w-3.5 h-3.5" />
-                <span>Live Website Preview</span>
-              </button>
-
-              <button
                 onClick={() => setActiveTab('screenshots')}
                 className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
                   activeTab === 'screenshots'
@@ -164,15 +152,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     <span>// Add project walkthrough video here</span>
                   </div>
                 )
-              )}
-
-              {activeTab === 'website' && (
-                <iframe
-                  src={project.liveDemoUrl}
-                  title={`${project.title} Website Preview`}
-                  className="w-full h-full border-0 bg-white"
-                  sandbox="allow-scripts allow-same-origin"
-                />
               )}
 
               {activeTab === 'screenshots' && (
