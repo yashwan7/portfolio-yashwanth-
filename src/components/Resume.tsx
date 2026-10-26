@@ -62,7 +62,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           {/* PDF Viewer */}
           <div className="flex-1 bg-black overflow-hidden relative">
             <iframe
-              src={PERSONAL_INFO.resumeUrl}
+              src={`${PERSONAL_INFO.resumeUrl}?v=20261027`}
               title="Yashwanth S N Resume PDF"
               className="w-full h-full border-0"
             />
@@ -70,9 +70,9 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
           {/* Footer Bar */}
           <div className="p-3 border-t border-white/10 bg-black/60 flex items-center justify-between text-xs font-mono text-slate-400">
-            <span>Yashwanth S N — Resume</span>
+            <span>Yashwanth S N — Resume (Updated Oct 2026)</span>
             <a
-              href={PERSONAL_INFO.resumeUrl}
+              href={`${PERSONAL_INFO.resumeUrl}?v=20261027`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white flex items-center gap-1 transition-colors"
@@ -94,7 +94,7 @@ export const ResumeSection: React.FC<{ onOpenModal: () => void }> = ({ onOpenMod
     'Backend Architecture: Java, Spring Boot, Spring Cloud Gateway',
     'Cloud & Infrastructure: Docker, Kubernetes, Redis, Linux',
     'AI & Automation: Python, LangChain, Vector RAG',
-    'National Awards: Suzlon Award 2026 & EcoSpark 2026 Winner',
+    'MLH Hacktoberfest 2026 Overall Winner, Suzlon Award & EcoSpark Podia',
     '135+ Algorithmic Problems Solved on LeetCode',
   ];
 
