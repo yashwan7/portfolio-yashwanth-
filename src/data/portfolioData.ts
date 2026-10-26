@@ -387,7 +387,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "October 18, 2026",
     type: "Hackathon",
     description: "Won Overall Winners with REsq mesh at Hacktoberfest Hack Day Bengaluru <> KrowdKraft on October 18, 2026. Competed in MLH Hacktoberfest among ~850 registered participants, qualifying through rigorous offline rounds at Startup Park, Madiwala. Awarded a total prize package worth ₹40,000, including three Arduino Uno Q boards (worth ₹10,000 each), ₹10,000 in cash, ARMORIQ swags, MLH merchandise, and $500 in Sarvam AI credits.",
-    image: "/images/cert-mlh-hacktoberfest.png"
+    image: "/images/mlh-hacktoberfest-1st-prize.png"
   },
   {
     id: "ach-icarus",
