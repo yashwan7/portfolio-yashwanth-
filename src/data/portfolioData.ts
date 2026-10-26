@@ -143,10 +143,12 @@ export const PROJECTS: Project[] = [
     demoVideoUrl: "https://youtu.be/If4ojzezvJY?si=mpkNxpJ-IA9ujanh",
     image: "/images/resqmesh-cover.jpg",
     screenshots: [
-      "/images/resqmesh-cover.jpg"
+      "/images/resqmesh-cover.jpg",
+      "/images/cert-mlh-hacktoberfest.png"
     ],
-    status: "Production",
+    status: "Hackathon Winner",
     highlights: [
+      "MLH Hacktoberfest 2026 Overall Winner: Awarded 1st Prize / Overall Winners at Hacktoberfest Hack Day Bengaluru <> KrowdKraft on October 18, 2026 with REsq mesh (Powered by MLH × DEV & DigitalOcean)",
       "Hardware Prototype & Embedded Mesh: Custom-built dual-display tactical node with NXP FRDM-MCXN236 MCU, ESP-NOW radios, OLED link telemetry, and TFT triage HUD (Live Hardware Demo Video)",
       "TinyML Link Degradation Predictor: INT8 quantized model on NXP Cortex-M33 (CMSIS-NN) predicting RF channel failure in 10.3 ms (91.8% accuracy)",
       "Offline Self-Healing ESP-NOW Mesh: Peer-to-peer ad-hoc telemetry routing with local flash queue ensuring zero packet loss in complete blackouts",
@@ -295,12 +297,12 @@ export const PROJECTS: Project[] = [
 export const CERTIFICATES: Certificate[] = [
   {
     id: "cert-mlh-hacktoberfest",
-    title: "1st Place Winner — MLH Hacktoberfest Hackday",
-    issuer: "Major League Hacking (MLH) & DigitalOcean",
-    date: "Oct 2026",
+    title: "Overall Winner — MLH Hacktoberfest Hack Day Bengaluru",
+    issuer: "Major League Hacking (MLH) × DEV & DigitalOcean",
+    date: "October 18, 2026",
     category: "Hackathons",
-    thumbnail: "/images/mlh-hacktoberfest-1st-prize.png",
-    credentialUrl: "https://www.linkedin.com/in/yashwanthgowdasn",
+    thumbnail: "/images/cert-mlh-hacktoberfest.png",
+    credentialUrl: "https://lnkd.in/p/djTErspb",
   },
   {
     id: "cert-icarus",
@@ -379,13 +381,13 @@ export const CERTIFICATES: Certificate[] = [
 export const ACHIEVEMENTS: Achievement[] = [
   {
     id: "ach-mlh-hacktoberfest",
-    title: "1st Prize Winner — MLH Hacktoberfest Hackday",
-    subtitle: "Team IZANAGI — Champion (₹40,000 Prize Package)",
-    organization: "Major League Hacking (MLH) & Startup Park",
-    date: "2026",
+    title: "Overall Winner (1st Prize) — MLH Hacktoberfest Hack Day",
+    subtitle: "REsq mesh (Team IZANAGI) — Champion (₹40,000 Prize Package)",
+    organization: "Major League Hacking (MLH) × DEV & DigitalOcean",
+    date: "October 18, 2026",
     type: "Hackathon",
-    description: "Competed in MLH Hacktoberfest, a flagship-level hack day with approximately 850 registered participants. Around 300 participants were selected for the first round at Startup Park, Madiwala. Our team successfully qualified for the finals and secured 1st Prize. Awarded a total prize package worth ₹40,000, including three Arduino Uno Q boards (worth ₹10,000 each), ₹10,000 in cash, ARMORIQ T-shirts, MLH stickers and swags, along with $500 in Sarvam AI credits.",
-    image: "/images/mlh-hacktoberfest-1st-prize.png"
+    description: "Won Overall Winners with REsq mesh at Hacktoberfest Hack Day Bengaluru <> KrowdKraft on October 18, 2026. Competed in MLH Hacktoberfest among ~850 registered participants, qualifying through rigorous offline rounds at Startup Park, Madiwala. Awarded a total prize package worth ₹40,000, including three Arduino Uno Q boards (worth ₹10,000 each), ₹10,000 in cash, ARMORIQ swags, MLH merchandise, and $500 in Sarvam AI credits.",
+    image: "/images/cert-mlh-hacktoberfest.png"
   },
   {
     id: "ach-icarus",
@@ -447,6 +449,14 @@ export const GALLERY_ITEMS: PhotoGalleryItem[] = [
     image: "/images/mlh-hacktoberfest-1st-prize.png",
     date: "2026",
     description: "Holding the 1st Prize Winner cheque of ₹40,000 with Team IZANAGI at MLH Hacktoberfest Hackday at Startup Park, Madiwala."
+  },
+  {
+    id: "gal-cert-mlh-hacktoberfest",
+    title: "MLH Hacktoberfest Overall Winner Certificate",
+    category: "Awards",
+    image: "/images/cert-mlh-hacktoberfest.png",
+    date: "Oct 18, 2026",
+    description: "Official Certificate of Achievement for Overall Winners won with REsq mesh at Hacktoberfest Hack Day Bengaluru <> KrowdKraft, powered by MLH x DEV & DigitalOcean."
   },
   {
     id: "gal-icarus",
