@@ -94,7 +94,7 @@ export const ResumeSection: React.FC<{ onOpenModal: () => void }> = ({ onOpenMod
     'Backend Architecture: Java, Spring Boot, Spring Cloud Gateway',
     'Cloud & Infrastructure: Docker, Kubernetes, Redis, Linux',
     'AI & Automation: Python, LangChain, Vector RAG',
-    'MLH Hacktoberfest 2026 Overall Winner, Suzlon Award & EcoSpark Podia',
+    '1st Place Winner at HACKFEST 2026 (102 Teams) & MLH Hacktoberfest 2026 Champion',
     '135+ Algorithmic Problems Solved on LeetCode',
   ];
 

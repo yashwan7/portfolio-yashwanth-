@@ -38,6 +38,7 @@ export interface Achievement {
   type: 'Award' | 'Hackathon' | 'Competition' | 'Recognition';
   description: string;
   image?: string;
+  link?: string;
   // Upload award image here
 }
 
@@ -78,10 +79,10 @@ export const PERSONAL_INFO = {
 
 export const STATS = [
   { id: 1, label: "LeetCode Solved", value: 135, suffix: "+", highlight: "Problem Solving" },
-  { id: 2, label: "MLH Hackday", value: 1, suffix: "st Prize", highlight: "850+ Participants" },
-  { id: 3, label: "EcoSpark 2026", value: 3, suffix: "rd Place", highlight: "Hackathon Podia" },
-  { id: 4, label: "Suzlon Award", value: 2026, suffix: " Winner", highlight: "Young Brilliance" },
-  { id: 5, label: "GitHub Repos", value: 15, suffix: "+", highlight: "Open Source" },
+  { id: 2, label: "HACKFEST 2026", value: 1, suffix: "st Prize", highlight: "102 Teams" },
+  { id: 3, label: "MLH Hackday", value: 1, suffix: "st Prize", highlight: "850+ Participants" },
+  { id: 4, label: "EcoSpark 2026", value: 3, suffix: "rd Place", highlight: "Hackathon Podia" },
+  { id: 5, label: "Suzlon Award", value: 2026, suffix: " Winner", highlight: "Young Brilliance" },
   { id: 6, label: "Academic CGPA", value: 8.52, suffix: "/10", isDecimal: true, highlight: "Engineering Excellence" },
 ];
 
@@ -156,6 +157,36 @@ export const PROJECTS: Project[] = [
       "Dual-Display Tactical HUD: 0.96\" OLED for radio link & GPS telemetry paired with 1.8\" TFT for NATO P1–P4 clinical triage protocol switching",
       "EOG Eye-Gaze Communication: 4th-order Butterworth DSP filter decoding ocular signals for non-verbal immobilized patient signaling (Call Nurse, Pain, Water)",
       "Cryptographic Telemetry Proof: HMAC-SHA256 packet hashing with Content-Defined Chunking (CDC) deduplication and live interactive radar command dashboard"
+    ]
+  },
+  {
+    id: "carbon-footprint-platform",
+    title: "Carbon Footprint Tracking & Reduction Platform",
+    shortDescription: "Embedded IoT system & platform for real-time carbon footprint monitoring, environmental telemetry, and sustainability-focused reduction analytics.",
+    fullDescription: "Secured 1st Place among 102 teams in the GreenTech & Impact track at HACKFEST 2026 (Season 1), a 24-hour National-Level Hackathon hosted by Sai Vidya Institute of Technology, Bengaluru on October 28–29, 2026. Engineered an end-to-end Carbon Footprint Tracking and Reduction Platform integrating an embedded IoT sensor system for live carbon emission telemetry, carbon accounting, threshold alerting, and data-driven sustainability reduction recommendations.",
+    category: "Full Stack",
+    techStack: [
+      "Embedded IoT",
+      "C/C++",
+      "React.js",
+      "Node.js",
+      "Tailwind CSS",
+      "Hardware Telemetry",
+      "REST APIs"
+    ],
+    githubUrl: "https://github.com/yashwan7",
+    liveDemoUrl: "https://lnkd.in/p/dFiUYEDs",
+    image: "/images/hackfest-2026-1st-prize.jpg",
+    screenshots: [
+      "/images/hackfest-2026-1st-prize.jpg",
+      "/images/cert-hackfest-2026.jpg"
+    ],
+    status: "Hackathon Winner",
+    highlights: [
+      "1st Place Winners (GreenTech & Impact Track) — Awarded ₹20,000 Cash Prize at HACKFEST 2026 out of 102 teams",
+      "Embedded IoT hardware sensor integration for live environmental emission monitoring",
+      "Automated carbon footprint calculation engine and real-time sustainability analytics dashboard",
+      "Data-driven reduction pathways and action recommendations for sustainable efficiency"
     ]
   },
   {
@@ -296,6 +327,15 @@ export const PROJECTS: Project[] = [
 
 export const CERTIFICATES: Certificate[] = [
   {
+    id: "cert-hackfest-2026",
+    title: "1st Place Winner (GreenTech & Impact) — HACKFEST 2026",
+    issuer: "Sai Vidya Institute of Technology, Bengaluru",
+    date: "October 28–29, 2026",
+    category: "Hackathons",
+    thumbnail: "/images/cert-hackfest-2026.jpg",
+    credentialUrl: "https://lnkd.in/p/dFiUYEDs",
+  },
+  {
     id: "cert-mlh-hacktoberfest",
     title: "Overall Winner — MLH Hacktoberfest Hack Day Bengaluru",
     issuer: "Major League Hacking (MLH) × DEV & DigitalOcean",
@@ -380,6 +420,17 @@ export const CERTIFICATES: Certificate[] = [
 
 export const ACHIEVEMENTS: Achievement[] = [
   {
+    id: "ach-hackfest-2026",
+    title: "1st Place Winner — HACKFEST 2026 (National Hackathon)",
+    subtitle: "GreenTech & Impact Track Champions — ₹20,000 Cash Prize (1st among 102 Teams)",
+    organization: "Sai Vidya Institute of Technology, Bengaluru",
+    date: "October 28–29, 2026",
+    type: "Hackathon",
+    description: "Secured 1st Place out of 102 competing teams nationwide at HACKFEST 2026 (Season 1), a 24-hour National-Level Hackathon hosted by Sai Vidya Institute of Technology, Bengaluru. Awarded 1st Prize and a ₹20,000 cash prize for developing a Carbon Footprint Tracking and Reduction Platform integrating an embedded IoT hardware system for real-time carbon monitoring, automated emission analytics, and sustainability-focused reduction strategies.",
+    image: "/images/hackfest-2026-1st-prize.jpg",
+    link: "https://lnkd.in/p/dFiUYEDs"
+  },
+  {
     id: "ach-mlh-hacktoberfest",
     title: "Overall Winner (1st Prize) — MLH Hacktoberfest Hack Day",
     subtitle: "REsq mesh (Team IZANAGI) — Champion (₹40,000 Prize Package)",
@@ -387,7 +438,8 @@ export const ACHIEVEMENTS: Achievement[] = [
     date: "October 18, 2026",
     type: "Hackathon",
     description: "Won Overall Winners with REsq mesh at Hacktoberfest Hack Day Bengaluru <> KrowdKraft on October 18, 2026. Competed in MLH Hacktoberfest among ~850 registered participants, qualifying through rigorous offline rounds at Startup Park, Madiwala. Awarded a total prize package worth ₹40,000, including three Arduino Uno Q boards (worth ₹10,000 each), ₹10,000 in cash, ARMORIQ swags, MLH merchandise, and $500 in Sarvam AI credits.",
-    image: "/images/mlh-hacktoberfest-1st-prize.png"
+    image: "/images/mlh-hacktoberfest-1st-prize.png",
+    link: "https://lnkd.in/p/djTErspb"
   },
   {
     id: "ach-icarus",
@@ -442,6 +494,22 @@ export const ACHIEVEMENTS: Achievement[] = [
 ];
 
 export const GALLERY_ITEMS: PhotoGalleryItem[] = [
+  {
+    id: "gal-hackfest-2026",
+    title: "1st Prize — HACKFEST 2026 Stage Ceremony",
+    category: "Winning Moments",
+    image: "/images/hackfest-2026-1st-prize.jpg",
+    date: "Oct 29, 2026",
+    description: "Receiving the 1st Prize Winners cheque of ₹20,000 on stage for the GreenTech & Impact track at HACKFEST 2026 Season 1 (Sai Vidya Institute of Technology, Bengaluru)."
+  },
+  {
+    id: "gal-cert-hackfest-2026",
+    title: "HACKFEST 2026 1st Place Winner Certificate",
+    category: "Awards",
+    image: "/images/cert-hackfest-2026.jpg",
+    date: "Oct 28–29, 2026",
+    description: "Official Certificate of Achievement for securing 1st Place (Winners) in the GreenTech & Impact track at HACKFEST 2026 Season 1."
+  },
   {
     id: "gal-mlh-hacktoberfest",
     title: "1st Prize — MLH Hacktoberfest Hackday Champion",

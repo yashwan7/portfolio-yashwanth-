@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ACHIEVEMENTS } from '../data/portfolioData';
-import { Trophy, Award, Medal, Star, Calendar } from 'lucide-react';
+import { Trophy, Award, Medal, Star, Calendar, ExternalLink } from 'lucide-react';
 
 export const Achievements: React.FC = () => {
   const getIcon = (type: string) => {
@@ -102,6 +102,20 @@ export const Achievements: React.FC = () => {
                       <p className="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed">
                         {item.description}
                       </p>
+
+                      {item.link && (
+                        <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-end">
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-neutral-800/80 hover:bg-neutral-700/80 text-xs font-mono text-slate-300 hover:text-white transition-all border border-white/10"
+                          >
+                            <span>Verify Post</span>
+                            <ExternalLink className="w-3 h-3 text-copper-400" />
+                          </a>
+                        </div>
+                      )}
 
                     </div>
                   </div>
