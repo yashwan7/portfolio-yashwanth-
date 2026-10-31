@@ -62,7 +62,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           {/* PDF Viewer */}
           <div className="flex-1 bg-black overflow-hidden relative">
             <iframe
-              src={`${PERSONAL_INFO.resumeUrl}?v=20261027`}
+              src={`${PERSONAL_INFO.resumeUrl}?v=20261101`}
               title="Yashwanth S N Resume PDF"
               className="w-full h-full border-0"
             />
@@ -70,9 +70,9 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
           {/* Footer Bar */}
           <div className="p-3 border-t border-white/10 bg-black/60 flex items-center justify-between text-xs font-mono text-slate-400">
-            <span>Yashwanth S N — Resume (Updated Oct 2026)</span>
+            <span>Yashwanth S N — Resume (Updated Nov 2026)</span>
             <a
-              href={`${PERSONAL_INFO.resumeUrl}?v=20261027`}
+              href={`${PERSONAL_INFO.resumeUrl}?v=20261101`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white flex items-center gap-1 transition-colors"
