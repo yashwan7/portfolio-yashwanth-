@@ -160,8 +160,8 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
-    id: "carbon-footprint-platform",
-    title: "Carbon Footprint Tracking & Reduction Platform",
+    id: "carbon-mesh",
+    title: "CarbonMesh — Carbon Footprint Tracking & Reduction Platform",
     shortDescription: "Embedded IoT system & platform for real-time carbon footprint monitoring, environmental telemetry, and sustainability-focused reduction analytics.",
     fullDescription: "Secured 1st Place among 102 teams in the GreenTech & Impact track at HACKFEST 2026 (Season 1), a 24-hour National-Level Hackathon hosted by Sai Vidya Institute of Technology, Bengaluru on October 28–29, 2026. Engineered an end-to-end Carbon Footprint Tracking and Reduction Platform integrating an embedded IoT sensor system for live carbon emission telemetry, carbon accounting, threshold alerting, and data-driven sustainability reduction recommendations.",
     category: "Full Stack",
@@ -174,8 +174,8 @@ export const PROJECTS: Project[] = [
       "Hardware Telemetry",
       "REST APIs"
     ],
-    githubUrl: "https://github.com/yashwan7",
-    liveDemoUrl: "https://lnkd.in/p/dFiUYEDs",
+    githubUrl: "https://github.com/yashwan7/Carbon-Mesh",
+    liveDemoUrl: "https://izanagi-t3-11-dashboard-9jvgpilse-yashwan7896-7928s-projects.vercel.app",
     image: "/images/hackfest-2026-1st-prize.jpg",
     screenshots: [
       "/images/hackfest-2026-1st-prize.jpg",
