@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Play, Image as ImageIcon, CheckCircle2, Video, Box } from 'lucide-react';
+import { X, ExternalLink, Play, Image as ImageIcon, CheckCircle2, Video, Box, Cpu } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import { Project } from '../data/portfolioData';
 import APIGatewayDemo from './APIGatewayDemo';
@@ -11,15 +11,22 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  const [activeTab, setActiveTab] = useState<'video' | 'screenshots'>(
-    project?.demoVideoUrl || project?.id === 'cloud-native-gateway' ? 'video' : 'screenshots'
-  );
+  const hasVideo = Boolean(project?.demoVideoUrl || project?.id === 'cloud-native-gateway');
+  const hasHardware = Boolean(project?.hardwareImage);
+
+  const [activeTab, setActiveTab] = useState<'video' | 'screenshots' | 'hardware'>('screenshots');
 
   React.useEffect(() => {
     if (project) {
-      setActiveTab(project.demoVideoUrl || project.id === 'cloud-native-gateway' ? 'video' : 'screenshots');
+      if (project.hardwareImage) {
+        setActiveTab('hardware');
+      } else if (project.demoVideoUrl || project.id === 'cloud-native-gateway') {
+        setActiveTab('video');
+      } else {
+        setActiveTab('screenshots');
+      }
     }
-  }, [project?.id]);
+  }, [project?.id, project?.hardwareImage, project?.demoVideoUrl]);
 
   if (!project) return null;
 
@@ -87,25 +94,41 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           {/* Modal Content Scroll Area */}
           <div className="p-6 overflow-y-auto space-y-6">
             
-            {/* View Mode Tabs (Demo Video, Website Preview, Screenshots) */}
+            {/* View Mode Tabs (Embedded Hardware, Demo Video, Screenshots) */}
             <div className="flex items-center gap-2 border-b border-white/10 pb-3 flex-wrap">
-              <button
-                onClick={() => setActiveTab('video')}
-                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
-                  activeTab === 'video'
-                    ? 'bg-ice-500/20 text-ice-400 border border-ice-500/40'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                {project.id === 'cloud-native-gateway' ? <Box className="w-3.5 h-3.5 text-cyan-400" /> : <Video className="w-3.5 h-3.5" />}
-                <span>
-                  {project.id === 'cloud-native-gateway'
-                    ? 'Interactive 3D Demo'
-                    : project.id === 'resq-mesh'
-                    ? 'Hardware Demo Video'
-                    : 'Demo Video'}
-                </span>
-              </button>
+              {hasHardware && (
+                <button
+                  onClick={() => setActiveTab('hardware')}
+                  className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                    activeTab === 'hardware'
+                      ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  <Cpu className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Embedded Hardware</span>
+                </button>
+              )}
+
+              {hasVideo && (
+                <button
+                  onClick={() => setActiveTab('video')}
+                  className={`px-4 py-2 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
+                    activeTab === 'video'
+                      ? 'bg-ice-500/20 text-ice-400 border border-ice-500/40'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  {project.id === 'cloud-native-gateway' ? <Box className="w-3.5 h-3.5 text-cyan-400" /> : <Video className="w-3.5 h-3.5" />}
+                  <span>
+                    {project.id === 'cloud-native-gateway'
+                      ? 'Interactive 3D Demo'
+                      : project.id === 'resq-mesh'
+                      ? 'Hardware Demo Video'
+                      : 'Demo Video'}
+                  </span>
+                </button>
+              )}
 
               <button
                 onClick={() => setActiveTab('screenshots')}
@@ -116,13 +139,28 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 }`}
               >
                 <ImageIcon className="w-3.5 h-3.5" />
-                <span>Screenshots</span>
+                <span>Gallery & Podiums</span>
               </button>
             </div>
 
             {/* Media Preview Box */}
             <div className="relative w-full min-h-[300px] sm:min-h-[400px] aspect-video rounded-2xl overflow-hidden bg-black/95 border border-white/10 flex items-center justify-center">
-              {activeTab === 'video' && (
+              {activeTab === 'hardware' && project.hardwareImage && (
+                <div className="w-full h-full flex flex-col items-center justify-center p-4 bg-black/95">
+                  <img
+                    src={project.hardwareImage}
+                    alt={`${project.title} Embedded System Hardware Prototype`}
+                    className="max-h-[320px] sm:max-h-[370px] w-auto object-contain rounded-xl border border-white/10 shadow-2xl"
+                  />
+                  <div className="mt-3 text-center">
+                    <span className="text-[11px] font-mono text-amber-300 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                      ⚡ Embedded System Hardware Prototype — NXP MCU, ESP32, MQ Gas Sensors & Telemetry OLEDs
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'video' && hasVideo && (
                 project.id === 'cloud-native-gateway' ? (
                   <div className="w-full h-full">
                     <APIGatewayDemo />
@@ -146,12 +184,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                       src={project.demoVideoUrl}
                     />
                   )
-                ) : (
-                  <div className="text-center p-6 text-slate-400 font-mono text-xs">
-                    <Play className="w-8 h-8 text-copper-400 mb-2 mx-auto animate-pulse" />
-                    <span>// Add project walkthrough video here</span>
-                  </div>
-                )
+                ) : null
               )}
 
               {activeTab === 'screenshots' && (

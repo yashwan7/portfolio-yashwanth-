@@ -10,6 +10,7 @@ export interface Project {
   demoVideoUrl?: string; // YouTube or MP4 link
   image: string; // Add project image
   screenshots: string[];
+  hardwareImage?: string; // Embedded hardware prototype photo
   status: 'Production' | 'Active Development' | 'Hackathon Winner' | 'Completed';
   highlights: string[];
   // Replace project comments:
@@ -177,7 +178,9 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/yashwan7/Carbon-Mesh",
     liveDemoUrl: "https://izanagi-t3-11-dashboard-9jvgpilse-yashwan7896-7928s-projects.vercel.app",
     image: "/images/carbonmesh-cover.jpg",
+    hardwareImage: "/images/carbonmesh-hardware.jpg",
     screenshots: [
+      "/images/carbonmesh-hardware.jpg",
       "/images/carbonmesh-cover.jpg",
       "/images/hackfest-2026-1st-prize.jpg",
       "/images/cert-hackfest-2026.jpg"
