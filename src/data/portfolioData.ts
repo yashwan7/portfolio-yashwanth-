@@ -176,8 +176,9 @@ export const PROJECTS: Project[] = [
     ],
     githubUrl: "https://github.com/yashwan7/Carbon-Mesh",
     liveDemoUrl: "https://izanagi-t3-11-dashboard-9jvgpilse-yashwan7896-7928s-projects.vercel.app",
-    image: "/images/hackfest-2026-1st-prize.jpg",
+    image: "/images/carbonmesh-cover.jpg",
     screenshots: [
+      "/images/carbonmesh-cover.jpg",
       "/images/hackfest-2026-1st-prize.jpg",
       "/images/cert-hackfest-2026.jpg"
     ],
