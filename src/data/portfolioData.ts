@@ -367,6 +367,16 @@ export const CERTIFICATES: Certificate[] = [
     credentialUrl: "https://www.linkedin.com/posts/yashwanthgowdasn_gitsetgo-github-opensource-ugcPost-7511451879386599425-9skz/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFyQEkQBSJNZwSE70FSJYOewImmJ5FfTVe0",
   },
   {
+    id: "cert-codefury-9",
+    title: "CodeFury 9.0 — National Level Hackathon Participation",
+    issuer: "IEEE UVCE Computer Society, UVCE Bengaluru",
+    date: "August 21–23, 2026",
+    category: "Hackathons",
+    thumbnail: "/images/cert-codefury.jpg",
+    credentialUrl: "/certificates/codefury-9-certificate.pdf",
+    downloadUrl: "/certificates/codefury-9-certificate.pdf",
+  },
+  {
     id: "cert-suzlon",
     title: "Suzlon Young Brilliance National Award 2026",
     issuer: "Suzlon Group (The Wind Man Shri Tulsi Tanti Awards)",
@@ -561,6 +571,14 @@ export const GALLERY_ITEMS: PhotoGalleryItem[] = [
     image: "/images/cert-gitsetgo.jpg",
     date: "Sept 2026",
     description: "Official Certificate of Competence for Second Place in GitSetGo! Open Source Relay Race awarded by RV University."
+  },
+  {
+    id: "gal-cert-codefury",
+    title: "CodeFury 9.0 Hackathon Participation Certificate",
+    category: "Awards",
+    image: "/images/cert-codefury.jpg",
+    date: "August 2026",
+    description: "Certificate of Participation for competing in CodeFury 9.0, the 9th Annual National-Level Hackathon organized by IEEE UVCE Computer Society at UVCE Bengaluru."
   },
   {
     id: "gal-1",
