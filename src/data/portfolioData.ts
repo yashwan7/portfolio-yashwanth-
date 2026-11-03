@@ -349,6 +349,16 @@ export const CERTIFICATES: Certificate[] = [
     credentialUrl: "https://lnkd.in/p/djTErspb",
   },
   {
+    id: "cert-hackering-2",
+    title: "Final Round Finalist — Hackering 2.0 (36-Hour National Hackathon)",
+    issuer: "RV Institute of Technology and Management (RVITM), Bengaluru",
+    date: "October 8–10, 2026",
+    category: "Hackathons",
+    thumbnail: "/images/cert-hackering.jpg",
+    credentialUrl: "/certificates/hackering-2.0-certificate.pdf",
+    downloadUrl: "/certificates/hackering-2.0-certificate.pdf",
+  },
+  {
     id: "cert-icarus",
     title: "1st Place Winner — ICARUS CanSat Telemetry Challenge",
     issuer: "RV University (School of Computer Science & Engineering)",
@@ -539,6 +549,14 @@ export const GALLERY_ITEMS: PhotoGalleryItem[] = [
     image: "/images/cert-mlh-hacktoberfest.png",
     date: "Oct 18, 2026",
     description: "Official Certificate of Achievement for Overall Winners won with REsq mesh at Hacktoberfest Hack Day Bengaluru <> KrowdKraft, powered by MLH x DEV & DigitalOcean."
+  },
+  {
+    id: "gal-cert-hackering",
+    title: "Hackering 2.0 National Hackathon Finalist Certificate",
+    category: "Awards",
+    image: "/images/cert-hackering.jpg",
+    date: "Oct 8–10, 2026",
+    description: "Certificate of Participation for qualifying to the Final Round of Hackering 2.0, a 36-Hour National-Level Hackathon organized by RV Institute of Technology and Management (RVITM), Bengaluru (Team IZANAGI)."
   },
   {
     id: "gal-icarus",
